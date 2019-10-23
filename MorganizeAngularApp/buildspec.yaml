@@ -5,11 +5,11 @@ phases:
       runtime-versions:
         nodejs: 10
       commands:
+      - cd MorganizeAngularApp
       - npm install -g @angular/cli
       - npm install --save-dev @angular-devkit/build-angular
     build:
       commands:
-        - cd MorganizeAngularApp
         - ng build --prod
     post_build:
       commands:
