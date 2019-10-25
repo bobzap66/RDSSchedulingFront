@@ -8,12 +8,12 @@ import { LoginCredentials } from 'src/app/models/loginPost';
 })
 export class LoginService 
 {
-  base_url:string = "";
+  login_url:string = "";
   lcJson:string = "";
 
   constructor(private http:HttpClient) 
   {
-    this.base_url = "http://ec2-52-202-225-1.compute-1.amazonaws.com:9999/login";
+    this.login_url = "http://ec2-52-202-225-1.compute-1.amazonaws.com:9999/login";
    }
 
    headers = new HttpHeaders({
@@ -23,7 +23,7 @@ export class LoginService
     sendLoginInformation(lc:LoginCredentials):Promise<LoginCredentials>
     {
        this.lcJson = JSON.stringify(lc);
-       let response:Promise<LoginCredentials> = this.http.post<LoginCredentials>(this.base_url, this.lcJson, {headers:this.headers}).toPromise();
+       let response:Promise<LoginCredentials> = this.http.post<LoginCredentials>(this.login_url, this.lcJson, {headers:this.headers}).toPromise();
        return response;
     }
   
