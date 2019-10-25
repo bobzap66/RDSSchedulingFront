@@ -1,5 +1,5 @@
 
-<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
 	
 
 
@@ -13,17 +13,17 @@
 				<h3 id="sign" class="card-title text-center">Sign In</h3>
 				<form class="form-signin" >
 				  <div class="form-label-group">
-					<input type="text" id="loginUsername" class="form-control"  required >
+					<input ref-username type="text" id="loginUsername" class="form-control"  required >
 					<label for="username">Username</label>
 				  </div>
 				  <div class="form-label-group">
-					<input type="password" id="loginPassword" class="form-control"  required>
+					<input ref-password type="password" id="loginPassword" class="form-control"  required>
 					<label for="password">Password</label>
 				  </div>
 				  
-				  <button onclick="frontPageLogin()" type="button" class="btn btn-lg btn-primary btn-block text-uppercase">Sign in</button>
+				  <button type="button" (click)="onSubmitLogin(username.value, password.value)"  class="btn btn-lg btn-primary btn-block text-uppercase">Sign in</button>
 				  
-				  
+				  <p>{{username.value}}</p>
 				</form>
 				
 				
