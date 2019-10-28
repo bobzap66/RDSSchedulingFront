@@ -1,9 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { LoginCredentials } from 'src/app/models/loginPost';
-import { Observable, Subscription } from 'rxjs';
-import { logging } from 'protractor';
-
+import {
+  Router, Resolve,
+  RouterStateSnapshot,
+  ActivatedRouteSnapshot,
+  NavigationExtras
+}                                 from '@angular/router';
+import { Subject } from 'rxjs';
 
 
 
@@ -17,8 +21,9 @@ export class LoginService
   login_url:string = "";
   local_url:string = "";
   lcJson:string = "";
-  currentUser:LoginCredentials = new LoginCredentials(0, "", "", "", "", []);
-  constructor(private http:HttpClient) 
+  static user = new Subject<LoginCredentials>();
+  
+  constructor(private http:HttpClient, private router:Router) 
   {
     this.login_url = "http://ec2-52-202-225-1.compute-1.amazonaws.com:9999/login";
     this.local_url = "http://localhost:9999/login";
@@ -26,23 +31,20 @@ export class LoginService
 
    headers = new HttpHeaders({ 'Content-Type':'application/json' });
 
-    sendLoginInformation(lc:LoginCredentials, token:boolean)
+    sendLoginInformation(lc:LoginCredentials, token:boolean):LoginCredentials
     {
-      
-      let num:number = 0;
          this.http.post<LoginCredentials>(this.local_url, lc, {headers:this.headers}).subscribe(
       (response:LoginCredentials) =>
       {
-         this.currentUser.id = response.id;
-         this.currentUser.name = response.name;
-         this.currentUser.username = response.username;
-         this.currentUser.password = response.password;
-         this.currentUser.email = response.email;
-         this.currentUser.groups = response.groups;
+         lc.id = response.id;
+         lc.name = response.name;
+         lc.email = response.email;
+         lc.groups = response.groups;
          
        });
-          console.log(this.currentUser);
-          //route somewhere passing along this.currentUser
+       
+         return lc;
+          
        
     }
 
