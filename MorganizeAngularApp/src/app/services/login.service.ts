@@ -27,7 +27,7 @@ export class LoginService
 
     sendLoginInformation(lc:LoginCredentials):LoginCredentials
     {
-         this.http.post<LoginCredentials>(this.local_url, lc, {headers:this.headers}).subscribe(
+         this.http.post<LoginCredentials>(this.login_url, lc, {headers:this.headers}).subscribe(
       (response:LoginCredentials) =>
       {
          lc.id = response.id;
