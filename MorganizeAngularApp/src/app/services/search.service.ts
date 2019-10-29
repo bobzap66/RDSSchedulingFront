@@ -25,9 +25,9 @@ export class SearchService
   {
     
     
-    this.local_url += `/${input}`;
+    this.local_url += `?tag=${input}`;
 
-    this.http.post<any[]>(this.local_url, {} ,{headers:this.headers}).subscribe((response) => 
+    this.http.get<any[]>(this.local_url).subscribe((response) => 
     {
       this.events = response;
       this.transferSearch.changeSearchable(this.events);
