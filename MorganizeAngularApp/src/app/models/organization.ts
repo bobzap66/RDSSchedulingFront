@@ -1,14 +1,18 @@
+
+import { MorganizeEvent } from 'src/app/models/morganizeEvent';
 export class Organization
 {
+
+    
     o_id:number;
     name:string;
     description:string;
     members:Array<string>;
-    events:Array<any>;
+    events:Array<MorganizeEvent>;
     tags:Array<string>;
 
 
-    constructor(o_id:number, name:string, description:string, members:Array<string>, events:Array<string>, tags:Array<string>)
+    constructor(o_id:number, name:string, description:string, members:Array<string>, events:Array<MorganizeEvent>, tags:Array<string>)
     {
         this.o_id = o_id;
         this.name = name;
