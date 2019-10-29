@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { MorganizeEvent } from 'src/app/models/morganizeEvent';
+import { DataServiceService } from 'src/app/services/data-service.service';
 
 @Injectable({
   providedIn: 'root'
@@ -9,8 +10,10 @@ export class SearchService
 {
   login_url:string = "";
   local_url:string = "";
+  events:MorganizeEvent[];
+ 
 
-  constructor(private http:HttpClient) 
+  constructor(private http:HttpClient, private transferSearch:DataServiceService) 
   {
     this.login_url = "http://ec2-52-202-225-1.compute-1.amazonaws.com:9999/login";
     this.local_url = "http://localhost:9999/allEvents";
@@ -18,14 +21,19 @@ export class SearchService
 
   headers = new HttpHeaders({ 'Content-Type':'application/json' });
 
-  searchEvent(input:string):Observable<Event[]>
+  searchEvent(input:string)
   {
-    let params = new HttpParams();
-       params = params.append('input', input);
+    
+    
+    this.local_url += `/${input}`;
 
-    let events:Observable<Event[]> = this.http.get<Event[]>(this.local_url, {headers:this.headers, params});
+    this.http.post<any[]>(this.local_url, {} ,{headers:this.headers}).subscribe((response) => 
+    {
+      this.events = response;
+      this.transferSearch.changeSearchable(this.events);
+    });
 
-    return events;
+    
   }
 
 

@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { UserPageComponent } from './components/user-page/user-page.component';
 import { CreateUserPageComponent } from './components/create-user-page/create-user-page.component';
+import { ResultsComponent } from './components/results/results.component';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { CreateUserPageComponent } from './components/create-user-page/create-us
     AppComponent,
     LoginComponent,
     UserPageComponent,
-    CreateUserPageComponent
+    CreateUserPageComponent,
+    ResultsComponent
   ],
   imports: [
     BrowserModule,
