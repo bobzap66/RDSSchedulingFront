@@ -6,6 +6,7 @@ export class MorganizeEvent{
   endDate:number;
   description:string;
   maxAttendees:number;
+  location:string;
   organization:Object; //TODO replace with organization object
   appointments:Object[];
 
