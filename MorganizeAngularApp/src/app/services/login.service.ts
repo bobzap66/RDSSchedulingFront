@@ -1,12 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { LoginCredentials } from 'src/app/models/loginPost';
-import {
-  Router, Resolve,
-  RouterStateSnapshot,
-  ActivatedRouteSnapshot,
-  NavigationExtras
-}                                 from '@angular/router';
 import { Subject } from 'rxjs';
 
 
@@ -23,7 +17,7 @@ export class LoginService
   lcJson:string = "";
   static user = new Subject<LoginCredentials>();
   
-  constructor(private http:HttpClient, private router:Router) 
+  constructor(private http:HttpClient) 
   {
     this.login_url = "http://ec2-52-202-225-1.compute-1.amazonaws.com:9999/login";
     this.local_url = "http://localhost:9999/login";
