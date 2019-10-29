@@ -31,7 +31,7 @@ export class LoginService
 
    headers = new HttpHeaders({ 'Content-Type':'application/json' });
 
-    sendLoginInformation(lc:LoginCredentials, token:boolean):LoginCredentials
+    sendLoginInformation(lc:LoginCredentials):LoginCredentials
     {
          this.http.post<LoginCredentials>(this.local_url, lc, {headers:this.headers}).subscribe(
       (response:LoginCredentials) =>

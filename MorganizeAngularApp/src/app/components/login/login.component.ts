@@ -1,7 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { LoginCredentials } from 'src/app/models/loginPost';
 import { LoginService } from 'src/app/services/login.service';
-import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 import { DataServiceService } from 'src/app/services/data-service.service';
 
@@ -19,19 +18,23 @@ export class LoginComponent implements OnInit {
   password:string = "";
   lc:LoginCredentials = new LoginCredentials(0, "", "", "", "", []);
   currentUser:LoginCredentials;
-  finishedToken:boolean = false;
 
   onSubmitLogin(username:string, password:string)
   {
     this.lc.username = username;
     this.lc.password = password;
-    this.currentUser = this.login.sendLoginInformation(this.lc, this.finishedToken);//api call to retrive login information
+    this.currentUser = this.login.sendLoginInformation(this.lc);//api call to retrive login information
     
     while(this.currentUser === undefined){};//waits for the observable to finish
     
     this.transfer.changeMessage(this.currentUser);//sets transfer to other components 
     this.router.navigate(['/userPage']);//navigation to other page
   };
+
+  createUserPage()
+  {
+    this.router.navigate(['/createUser']);
+  }
 
 
   ngOnInit() 
