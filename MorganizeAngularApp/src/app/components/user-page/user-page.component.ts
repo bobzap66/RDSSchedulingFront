@@ -1,7 +1,5 @@
 import { Component, OnInit, Output, ViewChild, ɵConsole } from '@angular/core';
 import { LoginCredentials } from 'src/app/models/loginPost';
-import { LoginService } from 'src/app/services/login.service';
-import { Subscription } from 'rxjs';
 import { DataServiceService } from 'src/app/services/data-service.service';
 
 @Component({
@@ -26,17 +24,8 @@ export class UserPageComponent implements OnInit
   ngOnInit() 
   {
     this.transfer.currentFetch.subscribe(current => this.currentUser = current);
+    console.log(this.currentUser);
   }
 
 }
 
-
-
-/*
-LoginService.user.subscribe((user:LoginCredentials) =>
-      {
-        this.currentUser = user;
-        console.log(this.currentUser)
-      });
-      
-    console.log(this.currentUser)*/
