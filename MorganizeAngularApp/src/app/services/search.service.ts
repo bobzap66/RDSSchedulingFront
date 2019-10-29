@@ -16,7 +16,7 @@ export class SearchService
   constructor(private http:HttpClient, private transferSearch:DataServiceService) 
   {
     this.login_url = "http://ec2-52-202-225-1.compute-1.amazonaws.com:9999/login";
-    this.local_url = "http://localhost:9999/allEvents";
+    this.local_url = "http://localhost:9999/events";
   }
 
   headers = new HttpHeaders({ 'Content-Type':'application/json' });
