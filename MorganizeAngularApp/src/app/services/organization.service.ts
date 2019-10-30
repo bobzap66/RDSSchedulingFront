@@ -28,7 +28,7 @@ export class OrganizationService {
  API endpoints handled in this service
  /user/{u_id}/organizations
    GET : show user's associated organizations
-   POST : create a new organization with the user as admin
+   POST : create a new organization with the user as admin --- done
  /user/{u_id}/organizations{o_id}
    GET : display the data that holds the information about an organization overseen by the given user as the default administrator in change of managing the aforementioned organization
    PUT : update organization details
@@ -44,7 +44,7 @@ export class OrganizationService {
  headers = new HttpHeaders({ 'Content-Type':'application/json'});
 
  sendCreateOrganization(organization:Organization, user:LoginCredentials):Organization {
-   this.http.post<Organization>(`${this.remote_url}/${user.id}`, organization, {headers:this.headers}).subscribe(
+   this.http.post<Organization>(`${this.remote_url}/users/${user.id}/organizations`, organization, {headers:this.headers}).subscribe(
      (response:Organization) => {
        organization.o_id = response.o_id;
      });
@@ -55,7 +55,7 @@ export class OrganizationService {
  
   sendGetOrganizations(user:LoginCredentials):Array<Organization> {
     let organizations:Array<Organization>;
-    this.http.get<Array<Organization>>(`${this.remote_url}/${user.id}`, {headers:this.headers}).subscribe(
+    this.http.get<Array<Organization>>(`${this.remote_url}/user/${user.id}/organizations`, {headers:this.headers}).subscribe(
       (response:Array<Organization>) => {
       for(let i = 0; i < response.length; i++) {
         let organization:Organization;
