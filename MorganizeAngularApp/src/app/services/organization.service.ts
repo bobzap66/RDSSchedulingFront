@@ -66,18 +66,19 @@ export class OrganizationService {
  
 }
 
- getOrganization(organization:Organization):Organization{
-  this.http.get<Organization>(`${this.remote_url}/organizations/${organization.o_id}`, 
-  {headers:this.headers}).subscribe (
+ getOrganization(o_id:number):Promise<Organization>{
+  return this.http.get<Organization>(`${this.local_url}/organizations/${o_id}`).toPromise();
+  
+  /*.subscribe (
     (response:Organization) => {
       organization = Organization.createOrganization(response);
     }
   )
-  return organization;
+  return organization;*/
 }
 
  promoteToAdminOfOrganization(organization:Organization, user:Account, promoted:number):Organization{
-  let account:any = (organization.members.find(function(element) {
+  let account:any = organization.members.find(function(element) {
     // The + in front of element.id is to force element.id to be a number
     if(+element.id === promoted) {
       return element;
@@ -108,9 +109,9 @@ export class OrganizationService {
   return organization;
 }
 
-getOrganizationAsAdmin(organization:Organization, user:Account):Organization{
- organization = this.getOrganization(organization);
-  return organization;
+getOrganizationAsAdmin(organization:Organization, user:Account):Promise<Organization>{
+ return this.getOrganization(organization.o_id);
+  //return organization;
 }
  createOrganization(organization:Organization, user:Account):Organization {
    this.http.post<Organization>(`${this.remote_url}/users/${user.id}/organizations`, 

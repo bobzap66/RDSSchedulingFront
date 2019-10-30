@@ -1,1 +1,7 @@
-<p>organization-page works!</p>
+<div *ngIf="organization">
+    
+    <app-user-list [users]="organization.members"></app-user-list>
+
+
+
+</div>
