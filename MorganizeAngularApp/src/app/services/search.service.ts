@@ -18,7 +18,8 @@ export class SearchService
 
   constructor(private http:HttpClient, private transferSearch:DataServiceService) 
   {
-    
+    this.login_url = "http://ec2-52-202-225-1.compute-1.amazonaws.com:9999";
+    this.local_url = "http://localhost:9999";
    
   }
 
@@ -26,51 +27,38 @@ export class SearchService
 
   searchEvent(input:string)
   {
-    this.login_url = "http://ec2-52-202-225-1.compute-1.amazonaws.com:9999";
-    this.local_url = "http://localhost:9999";
+    let include = "";
     console.log(input);
-    if(input === "")
+    if(input !== "")
     {
-      this.local_url += `/events`;
-    }
-    else
-    {
-       this.local_url += `/events?tag=${input}`;
+        include += `?tag=${input}`;
     }
     
-    this.http.get<any[]>(this.local_url).subscribe((response) => 
+    this.http.get<any[]>(`${this.local_url}/events${include}`).subscribe((response) => 
     {
       this.events = response;
       this.transferSearch.changeSearchable(this.events);
     });
-
-    
   }
 
   searchOrganizations(input:string)
   {
-    this.login_url = "http://ec2-52-202-225-1.compute-1.amazonaws.com:9999";
-    this.local_url = "http://localhost:9999";
+    let include = "";
     console.log(input);
-    if(input === "")
+    if(input !== "")
     {
-      this.local_url += `/organizations`;
-    }
-    else
-    {
-       this.local_url += `/organizations?tag=${input}`;
+        include += `?tag=${input}`;
     }
     
-    this.http.get<any[]>(this.local_url).subscribe((response) => 
+    this.http.get<any[]>(`${this.local_url}/organizations${include}`).subscribe((response) => 
     {
       this.orgs = response;
       this.transferSearch.listOfOrganizations(this.orgs);
     });
-
-    
+  }
   }
 
 
 
 
-}
+
