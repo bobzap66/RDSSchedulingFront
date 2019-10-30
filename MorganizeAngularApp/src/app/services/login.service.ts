@@ -27,8 +27,10 @@ export class LoginService
 
     sendLoginInformation(lc:Account):Account
     {
+
          this.http.post<Account>(this.local_url, lc, {headers:this.headers}).subscribe(
       (response:Account) =>
+
       {
          lc.id = response.id;
          lc.name = response.name;
@@ -38,10 +40,7 @@ export class LoginService
        });
        
          return lc;
-          
-       
+             
     }
-
-  
-  
+ 
 }

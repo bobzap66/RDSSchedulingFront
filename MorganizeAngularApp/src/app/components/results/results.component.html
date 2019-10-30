@@ -1,8 +1,30 @@
 <p>results works!</p>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="results.component.css">
+  <title>Events</title>
+</head>
 
 
-<ul>
-    <li *ngFor="let event of events">
-      {{ event.name }}
-    </li>
-</ul>
+<table>
+  <tr>
+      <th>Name</th>
+      <th>Start Date</th>
+      <th>End Date</th>
+      <th>Description</th>
+      <th>Maximum Attendees</th>
+      <th>Location</th>
+  </tr>
+
+      <tr *ngFor = "let event of events">
+          <td>{{event.name}} </td>
+          <td> {{event.startdate}} </td>
+          <td>{{event.enddate}} </td>
+          <td>{{event.desciption}}</td>
+          <td>{{event.maxattendees}}</td>
+          <td>{{event.location}}</td>
+      </tr>
+  
+</table>
