@@ -33,18 +33,63 @@ export class OrganizationService {
    GET : display the data that holds the information about an organization overseen by the 
       given user as the default administrator in change of managing the aforementioned organization -- done
    PUT : update organization details -- done
+   POST : promote to admin -- done
    DELETE : delete an organization -- done
  /organizations
-   GET : show all organizations, searching by URL parameters
+   GET : show all organizations, searching by URL parameters -- done
  /organizations/{o_id}
-   GET : get organization details
-   POST : register for an organization
-   PUT : promote to admin
+   GET : get organization details -- done
+   POST : register for an organization -- done
+   
  */
 
  headers = new HttpHeaders({ 'Content-Type':'application/json'});
+ 
+ searchEvents(tag:string):Organization[]{
+  let organizations:Organization[];
+  let uri:string = `/organization?tag=${tag}`
+  this.http.get(this.local_url+uri).subscribe(
+    function(response:Organization[]){
+      organizations = response.map((o)=>Organization.createOrganization(o));
+    }
+  )
+  return organizations;
+}
+ registerForOrganization(organization:Organization, user:Account):Organization {
+  this.http.post<Organization>(`${this.remote_url}/organizations/${organization.o_id}`, 
+  user, {headers:this.headers}).subscribe(
+    (response:Organization) => {
+      organization = Organization.createOrganization(response);
+    });
+    return organization;
+ 
+}
 
+ getOrganization(organization:Organization):Organization{
+  this.http.get<Organization>(`${this.remote_url}/organizations/${organization.o_id}`, 
+  {headers:this.headers}).subscribe (
+    (response:Organization) => {
+      organization = Organization.createOrganization(response);
+    }
+  )
+  return organization;
+}
 
+ promoteToAdminOfOr]ganization(organization:Organization, user:Account, promoted:number):Organization{
+  let account:any = (organization.members.find(function(element) {
+    // The + in front of element.id is to force element.id to be a number
+    if(+element.id === promoted) {
+      return element;
+    }
+  });
+  this.http.post<Organization>(`${this.remote_url}/user/${user.id}/organizations/${organization.o_id}`, account,
+  {headers:this.headers}).subscribe (
+    (response:Organization) => {
+      organization = Organization.createOrganization(response);
+    }
+  )
+  return organization;
+}
  deleteOrganizationAsAdmin(organization:Organization, user:Account):void{
   this.http.delete<Organization>(`${this.remote_url}/user/${user.id}/organizations/${organization.o_id}`, 
   {headers:this.headers})
@@ -54,10 +99,7 @@ export class OrganizationService {
   this.http.post<Organization>(`${this.remote_url}/user/${user.id}/organizations/${organization.o_id}`, organization,
   {headers:this.headers}).subscribe (
     (response:Organization) => {
-      organization.name = response.name;
-      organization.description = response.description;
-      organization.members = response.members.map((account:any)=>account.username);
-      organization.tags = response.tags.map((tag:any)=>tag.tag);
+      organization = Organization.createOrganization(response);
     }
   )
   return organization;
@@ -67,10 +109,7 @@ getOrganizationAsAdmin(organization:Organization, user:Account):Organization{
   this.http.get<Organization>(`${this.remote_url}/user/${user.id}/organizations/${organization.o_id}`, 
   {headers:this.headers}).subscribe (
     (response:Organization) => {
-      organization.name = response.name;
-      organization.description = response.description;
-      organization.members = response.members.map((account:any)=>account.username);
-      organization.tags = response.tags.map((tag:any)=>tag.tag);
+      organization = Organization.createOrganization(response);
     }
   )
   return organization;
@@ -79,7 +118,7 @@ getOrganizationAsAdmin(organization:Organization, user:Account):Organization{
    this.http.post<Organization>(`${this.remote_url}/users/${user.id}/organizations`, 
    organization, {headers:this.headers}).subscribe(
      (response:Organization) => {
-       organization.o_id = response.o_id;
+      organization = Organization.createOrganization(response);
      });
      return organization;
   
@@ -92,10 +131,8 @@ getOrganizationAsAdmin(organization:Organization, user:Account):Organization{
       (response:Array<Organization>) => {
       for(let i = 0; i < response.length; i++) {
         let organization:Organization;
-          organization.name = response[i].name;
-          organization.description = response[i].description;
-          organization.members = response[i].members.map((account:any)=>account.username);
-          organization.tags = response[i].tags.map((tag:any)=>tag.tag);
+        organization = Organization.createOrganization(response[i]);
+        organizations.push(organization);
 ``
         }
       
