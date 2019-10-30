@@ -27,12 +27,13 @@ export class OrganizationService {
   /*
  API endpoints handled in this service
  /user/{u_id}/organizations
-   GET : show user's associated organizations
+   GET : show user's associated organizations -- done
    POST : create a new organization with the user as admin --- done
  /user/{u_id}/organizations{o_id}
-   GET : display the data that holds the information about an organization overseen by the given user as the default administrator in change of managing the aforementioned organization
-   PUT : update organization details
-   DELETE : delete an organization
+   GET : display the data that holds the information about an organization overseen by the 
+      given user as the default administrator in change of managing the aforementioned organization -- done
+   PUT : update organization details -- done
+   DELETE : delete an organization -- done
  /organizations
    GET : show all organizations, searching by URL parameters
  /organizations/{o_id}
@@ -43,8 +44,40 @@ export class OrganizationService {
 
  headers = new HttpHeaders({ 'Content-Type':'application/json'});
 
- sendCreateOrganization(organization:Organization, user:LoginCredentials):Organization {
-   this.http.post<Organization>(`${this.remote_url}/users/${user.id}/organizations`, organization, {headers:this.headers}).subscribe(
+
+ deleteOrganizationAsAdmin(organization:Organization, user:LoginCredentials):void{
+  this.http.delete<Organization>(`${this.remote_url}/user/${user.id}/organizations/${organization.o_id}`, 
+  {headers:this.headers})
+}
+
+ updateOrganizationAsAdmin(organization:Organization, user:LoginCredentials):Organization{
+  this.http.post<Organization>(`${this.remote_url}/user/${user.id}/organizations/${organization.o_id}`, organization,
+  {headers:this.headers}).subscribe (
+    (response:Organization) => {
+      organization.name = response.name;
+      organization.description = response.description;
+      organization.members = response.members.map((account:any)=>account.username);
+      organization.tags = response.tags.map((tag:any)=>tag.tag);
+    }
+  )
+  return organization;
+}
+
+getOrganizationAsAdmin(organization:Organization, user:LoginCredentials):Organization{
+  this.http.get<Organization>(`${this.remote_url}/user/${user.id}/organizations/${organization.o_id}`, 
+  {headers:this.headers}).subscribe (
+    (response:Organization) => {
+      organization.name = response.name;
+      organization.description = response.description;
+      organization.members = response.members.map((account:any)=>account.username);
+      organization.tags = response.tags.map((tag:any)=>tag.tag);
+    }
+  )
+  return organization;
+}
+ createOrganization(organization:Organization, user:LoginCredentials):Organization {
+   this.http.post<Organization>(`${this.remote_url}/users/${user.id}/organizations`, 
+   organization, {headers:this.headers}).subscribe(
      (response:Organization) => {
        organization.o_id = response.o_id;
      });
@@ -53,7 +86,7 @@ export class OrganizationService {
  }
 
  
-  sendGetOrganizations(user:LoginCredentials):Array<Organization> {
+  getOrganizations(user:LoginCredentials):Array<Organization> {
     let organizations:Array<Organization>;
     this.http.get<Array<Organization>>(`${this.remote_url}/user/${user.id}/organizations`, {headers:this.headers}).subscribe(
       (response:Array<Organization>) => {
@@ -62,6 +95,7 @@ export class OrganizationService {
           organization.name = response[i].name;
           organization.description = response[i].description;
           organization.members = response[i].members.map((account:any)=>account.username);
+          organization.tags = response[i].tags.map((tag:any)=>tag.tag);
 ``
         }
       
