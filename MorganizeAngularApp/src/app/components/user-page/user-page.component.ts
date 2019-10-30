@@ -18,7 +18,7 @@ export class UserPageComponent implements OnInit
   events:MorganizeEvent[];
 
 
-  constructor(private transfer:DataServiceService, private transferSearch:DataServiceService, private search:SearchService, private router:Router)
+  constructor(private transfer:DataServiceService, private search:SearchService, private router:Router)
    {
       
      

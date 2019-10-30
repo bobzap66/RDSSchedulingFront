@@ -35,7 +35,7 @@ export class DataServiceService
    }
    changeSearchable(emptyEvents: MorganizeEvent[])
    {
-      this.source2.next(emptyEvents)
+      this.source2.next(emptyEvents);
    }
 
    listOfOrganizations(emptyOrgs: Organization[])

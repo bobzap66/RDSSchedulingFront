@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { MorganizeEvent } from 'src/app/models/morganizeEvent';
 import { DataServiceService } from 'src/app/services/data-service.service';
 import { Organization } from '../models/organization';
+import { EMPTY } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -17,41 +18,47 @@ export class SearchService
 
   constructor(private http:HttpClient, private transferSearch:DataServiceService) 
   {
-    this.login_url = "http://ec2-52-202-225-1.compute-1.amazonaws.com:9999/";
-    this.local_url = "http://localhost:9999/";
+    this.login_url = "http://ec2-52-202-225-1.compute-1.amazonaws.com:9999";
+    this.local_url = "http://localhost:9999";
+   
   }
 
   headers = new HttpHeaders({ 'Content-Type':'application/json' });
 
   searchEvent(input:string)
   {
+    let include = "";
+    console.log(input);
+    if(input !== "")
+    {
+        include += `?tag=${input}`;
+    }
     
-    
-    this.local_url += `/events?tag=${input}`;
-
-    this.http.get<any[]>(this.local_url).subscribe((response) => 
+    this.http.get<any[]>(`${this.local_url}/events${include}`).subscribe((response) => 
     {
       this.events = response;
       this.transferSearch.changeSearchable(this.events);
     });
-
-    
   }
 
   searchOrganizations(input:string)
   {
-    this.local_url += `/organizations?tag=${input}`;
-
-    this.http.get<any[]>(this.local_url).subscribe((response) => 
+    let include = "";
+    console.log(input);
+    if(input !== "")
+    {
+        include += `?tag=${input}`;
+    }
+    
+    this.http.get<any[]>(`${this.local_url}/organizations${include}`).subscribe((response) => 
     {
       this.orgs = response;
       this.transferSearch.listOfOrganizations(this.orgs);
     });
-
-    
+  }
   }
 
 
 
 
-}
+
