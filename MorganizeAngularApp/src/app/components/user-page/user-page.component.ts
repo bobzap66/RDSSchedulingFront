@@ -1,5 +1,5 @@
 import { Component, OnInit, Output, ViewChild, ɵConsole } from '@angular/core';
-import { LoginCredentials } from 'src/app/models/loginPost';
+import { Account } from 'src/app/models/loginPost';
 import { DataServiceService } from 'src/app/services/data-service.service';
 import { SearchService } from 'src/app/services/search.service'
 import { MorganizeEvent } from 'src/app/models/morganizeEvent';
@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 })
 export class UserPageComponent implements OnInit 
 {
-  currentUser:LoginCredentials; 
+  currentUser:Account; 
   searchBy:string;
   typeOfSearch:string;
   events:MorganizeEvent[];

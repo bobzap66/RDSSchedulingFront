@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { LoginCredentials } from '../models/loginPost';
+import { Account } from '../models/loginPost';
 
 @Injectable({
   providedIn: 'root'
@@ -18,10 +18,10 @@ export class CreateUserService
 
   headers = new HttpHeaders({ 'Content-Type':'application/json' });
 
-  sendCreateUser(user:LoginCredentials):LoginCredentials
+  sendCreateUser(user:Account):Account
   {
-    this.http.post<LoginCredentials>(this.local_url, user, {headers:this.headers}).subscribe(
-      (response:LoginCredentials) =>
+    this.http.post<Account>(this.local_url, user, {headers:this.headers}).subscribe(
+      (response:Account) =>
       {
           user.id = response.id;
       });
