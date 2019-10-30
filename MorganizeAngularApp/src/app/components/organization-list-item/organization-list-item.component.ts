@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Organization } from 'src/app/models/organization';
+import { DataServiceService } from 'src/app/services/data-service.service';
 
 @Component({
   selector: 'app-organization-list-item',
@@ -17,6 +18,7 @@ export class OrganizationListItemComponent implements OnInit {
   }
 
   ngOnInit() {
+   
   }
 
 }

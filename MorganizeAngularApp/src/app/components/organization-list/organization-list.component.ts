@@ -1,5 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Organization } from 'src/app/models/organization';
+import { SearchService } from 'src/app/services/search.service';
+import { DataServiceService } from 'src/app/services/data-service.service';
 
 @Component({
   selector: 'app-organization-list',
@@ -8,11 +10,12 @@ import { Organization } from 'src/app/models/organization';
 })
 export class OrganizationListComponent implements OnInit {
 
-  @Input() organizations:Array<Organization>;
+  @Input() organizations:Organization[];
   
-  constructor() { }
+  constructor(private transferSearch:DataServiceService) { }
 
   ngOnInit() {
+    this.transferSearch.getOrganizationResults.subscribe(orgResponse => this.organizations = orgResponse);
   }
 
 }

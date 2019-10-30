@@ -28,7 +28,8 @@ export class UserPageComponent implements OnInit
    {
       if(type === "Organization")
       {
-
+        this.search.searchOrganizations(criteria);
+        this.router.navigate(["/results"]);
       }
       if(type === "Event")
       {
