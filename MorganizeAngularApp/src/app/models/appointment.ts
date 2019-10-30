@@ -1,8 +1,8 @@
-import { LoginCredentials } from './loginPost';
+import { Account } from './loginPost';
 import { MorganizeEvent } from './morganizeEvent';
 
 export class Appointment{
-    account:LoginCredentials;
+    account:Account;
     event:MorganizeEvent;
     type:string;
 }

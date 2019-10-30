@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { MorganizeEvent } from '../models/morganizeEvent';
-import { LoginCredentials } from '../models/loginPost';
+import { Account } from '../models/loginPost';
 
 
 @Injectable({
@@ -38,7 +38,7 @@ export class EventService {
   */
 
   // /users/{u_id}/events GET
-  getUserEvents(user:LoginCredentials):MorganizeEvent[]{
+  getUserEvents(user:Account):MorganizeEvent[]{
     let uri:string = `/users/${user.id}/events`;
     let events:MorganizeEvent[];
     this.http.get(this.local_url + uri).subscribe(
@@ -51,7 +51,7 @@ export class EventService {
   }
 
   // /users/{u_id}/events POST
-  createUserEvent(user:LoginCredentials, ev:MorganizeEvent):MorganizeEvent{
+  createUserEvent(user:Account, ev:MorganizeEvent):MorganizeEvent{
     let uri:string = `/users/${user.id}/events`;
     let headers:HttpHeaders = new HttpHeaders({'Content-Type':'application/json' });
 
@@ -65,7 +65,7 @@ export class EventService {
   }
 
   // /users/{u_id}/events/{e_id} GET
-  getAdministeredEvent(user:LoginCredentials, event:MorganizeEvent):MorganizeEvent{
+  getAdministeredEvent(user:Account, event:MorganizeEvent):MorganizeEvent{
     let uri:string = `/users/${user.id}/events/${event.id}`;
     this.http.get(this.local_url + uri).subscribe(
       function (response:MorganizeEvent){
@@ -77,7 +77,7 @@ export class EventService {
   }
 
   // /users/{u_id}/events/{e_id} PUT
-  updateAdministeredEvent(user:LoginCredentials, event:MorganizeEvent):MorganizeEvent{
+  updateAdministeredEvent(user:Account, event:MorganizeEvent):MorganizeEvent{
     let uri:string = `/users/${user.id}/events/${event.id}`;
     let headers:HttpHeaders = new HttpHeaders({'Content-Type':'application/json' });
 
@@ -91,7 +91,7 @@ export class EventService {
   }
 
   // /users/{u_id}/events/{e_id} DELETE
-  deleteAdministeredEvent(user:LoginCredentials, event:MorganizeEvent):void{
+  deleteAdministeredEvent(user:Account, event:MorganizeEvent):void{
     let uri:string = `/users/${user.id}/events/${event.id}`;
     this.http.delete(this.local_url+uri);
     return;
@@ -121,7 +121,7 @@ export class EventService {
   }
 
   // /events/{e_id} POST
-  registerForEvent(user:LoginCredentials, event:MorganizeEvent):MorganizeEvent{
+  registerForEvent(user:Account, event:MorganizeEvent):MorganizeEvent{
     let uri:string = `/events/${event.id}`;
     let headers:HttpHeaders = new HttpHeaders({'Content-Type':'application/json' });
 

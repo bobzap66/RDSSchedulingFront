@@ -1,8 +1,8 @@
-import { LoginCredentials } from './loginPost';
+import { Account } from './loginPost';
 import { Organization } from './organization';
 
 export class Membership{
-    account:LoginCredentials;
+    account:Account;
     organization:Organization;
     type:string;
 }

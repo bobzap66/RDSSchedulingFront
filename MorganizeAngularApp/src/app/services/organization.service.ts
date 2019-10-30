@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { LoginCredentials } from 'src/app/models/loginPost';
+import { Account } from 'src/app/models/loginPost';
 import { Organization } from 'src/app/models/organization';
 import {
   Router, Resolve,
@@ -16,7 +16,7 @@ import { Subject } from 'rxjs';
 export class OrganizationService {
   remote_url:string = "";
   local_url:string = "";
-  static user = new Subject<LoginCredentials>();
+  static user = new Subject<Account>();
 
   constructor(private http:HttpClient) 
   {
@@ -45,12 +45,12 @@ export class OrganizationService {
  headers = new HttpHeaders({ 'Content-Type':'application/json'});
 
 
- deleteOrganizationAsAdmin(organization:Organization, user:LoginCredentials):void{
+ deleteOrganizationAsAdmin(organization:Organization, user:Account):void{
   this.http.delete<Organization>(`${this.remote_url}/user/${user.id}/organizations/${organization.o_id}`, 
   {headers:this.headers})
 }
 
- updateOrganizationAsAdmin(organization:Organization, user:LoginCredentials):Organization{
+ updateOrganizationAsAdmin(organization:Organization, user:Account):Organization{
   this.http.post<Organization>(`${this.remote_url}/user/${user.id}/organizations/${organization.o_id}`, organization,
   {headers:this.headers}).subscribe (
     (response:Organization) => {
@@ -63,7 +63,7 @@ export class OrganizationService {
   return organization;
 }
 
-getOrganizationAsAdmin(organization:Organization, user:LoginCredentials):Organization{
+getOrganizationAsAdmin(organization:Organization, user:Account):Organization{
   this.http.get<Organization>(`${this.remote_url}/user/${user.id}/organizations/${organization.o_id}`, 
   {headers:this.headers}).subscribe (
     (response:Organization) => {
@@ -75,7 +75,7 @@ getOrganizationAsAdmin(organization:Organization, user:LoginCredentials):Organiz
   )
   return organization;
 }
- createOrganization(organization:Organization, user:LoginCredentials):Organization {
+ createOrganization(organization:Organization, user:Account):Organization {
    this.http.post<Organization>(`${this.remote_url}/users/${user.id}/organizations`, 
    organization, {headers:this.headers}).subscribe(
      (response:Organization) => {
@@ -86,7 +86,7 @@ getOrganizationAsAdmin(organization:Organization, user:LoginCredentials):Organiz
  }
 
  
-  getOrganizations(user:LoginCredentials):Array<Organization> {
+  getOrganizations(user:Account):Array<Organization> {
     let organizations:Array<Organization>;
     this.http.get<Array<Organization>>(`${this.remote_url}/user/${user.id}/organizations`, {headers:this.headers}).subscribe(
       (response:Array<Organization>) => {
