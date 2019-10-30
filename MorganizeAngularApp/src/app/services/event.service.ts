@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { MorganizeEvent } from '../models/morganizeEvent';
 import { Account } from '../models/loginPost';
+import { Appointment } from '../models/appointment';
 
 
 @Injectable({
@@ -38,16 +39,15 @@ export class EventService {
   */
 
   // /users/{u_id}/events GET
-  getUserEvents(user:Account):MorganizeEvent[]{
+  getUserAppointments(user:Account):Appointment[]{
     let uri:string = `/users/${user.id}/events`;
-    let events:MorganizeEvent[];
+    let appointments:Appointment[];
     this.http.get(this.local_url + uri).subscribe(
-      function (response:MorganizeEvent[]){
-        events = response.map((e) => MorganizeEvent.createEvent(e));
-      }
+      function (response:Appointment[]){
+       appointments = response;
     );
 
-    return events;
+    return appointments;
   }
 
   // /users/{u_id}/events POST
