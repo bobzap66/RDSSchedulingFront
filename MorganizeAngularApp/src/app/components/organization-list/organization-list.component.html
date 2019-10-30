@@ -1,1 +1,17 @@
-<p>organization-list works!</p>
+<style>
+
+    div.organization-list-wrapper{
+        width: 200px;
+        height: 500px;
+    }
+    ul.organization-list{
+        list-style-type: none;
+    }
+
+</style>
+
+<div class="organization-list-wrapper">
+    <ul class="organization-list">
+        <organization-list-item *ngfor="let organization in organizations" [organization]="organization"></organization-list-item>
+    </ul>
+</div>

@@ -1,10 +1,20 @@
-<head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="organization-list.component.css">
-</head>
+<style>
+    div.organization-list-item{
+        height: 80px;
+        width: 100%;
+        background-color: EFE8BF;
+    }
+    div.organiztion-title{
+        font-size: 24px;
+    }
+    div.organization-description{
+        font-size: 16px;
+    }
+</style>
 
 <div class="organization-list-item">
+    <div class=organization-link (ngclick)="console.log('clicked organziation: ' + organization.title)">
     <div class="organization-title">{{organization.name}}</div>
     <div class="organization-description">{{organization.description}}</div>
-    <div class="organization-link"><a></a></div>
+    </div>
 </div>>
