@@ -1,5 +1,5 @@
 import { Appointment } from './appointment';
-import { LoginCredentials } from './loginPost'; 
+import { Account } from './loginPost'; 
 
 export class MorganizeEvent{
   
@@ -14,8 +14,8 @@ export class MorganizeEvent{
   appointments:Appointment[];
   tags:any[];
 
-  admins:LoginCredentials[];
-  attendees:LoginCredentials[];
+  admins:Account[];
+  attendees:Account[];
 
 
   constructor(){
