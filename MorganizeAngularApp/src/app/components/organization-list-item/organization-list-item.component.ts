@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Organization } from 'src/app/models/organization';
 
 @Component({
   selector: 'app-organization-list-item',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./organization-list-item.component.css']
 })
 export class OrganizationListItemComponent implements OnInit {
+
+  @Input() organization:Organization;
 
   constructor() { }
 
