@@ -12,6 +12,6 @@
 
 <div class="organization-list-wrapper">
     <ul class="organization-list">
-        <organization-list-item *ngfor="let organization in organizations" [organization]="organization"></organization-list-item>
+        <app-organization-list-item *ngFor="let organization of organizations" [organization]="organization"></app-organization-list-item>
     </ul>
 </div>

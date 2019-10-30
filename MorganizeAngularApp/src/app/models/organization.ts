@@ -1,6 +1,7 @@
 
 import { MorganizeEvent } from 'src/app/models/morganizeEvent';
 import { Membership } from 'src/app/models/membership';
+import { Account } from 'src/app/models/loginPost';
 export class Organization
 {
 
