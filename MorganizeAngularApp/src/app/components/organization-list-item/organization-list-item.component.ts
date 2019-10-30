@@ -12,6 +12,10 @@ export class OrganizationListItemComponent implements OnInit {
 
   constructor() { }
 
+  handleClick(){
+    console.log(this.organization.name + " clicked");
+  }
+
   ngOnInit() {
   }
 

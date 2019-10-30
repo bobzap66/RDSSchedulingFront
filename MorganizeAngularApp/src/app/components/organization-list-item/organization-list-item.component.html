@@ -10,11 +10,12 @@
     div.organization-description{
         font-size: 16px;
     }
+    div.organization-link{
+        height: 100%
+    }
 </style>
 
-<div class="organization-list-item">
-    <div class=organization-link (ngclick)="console.log('clicked organziation: ' + organization.title)">
+<div class="organization-list-item organization-link" (ngclick)="handleClick()"> 
     <div class="organization-title">{{organization.name}}</div>
     <div class="organization-description">{{organization.description}}</div>
-    </div>
 </div>>
