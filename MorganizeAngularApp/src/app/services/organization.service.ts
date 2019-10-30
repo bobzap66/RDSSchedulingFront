@@ -75,7 +75,7 @@ export class OrganizationService {
   return organization;
 }
 
- promoteToAdminOfOr]ganization(organization:Organization, user:Account, promoted:number):Organization{
+ promoteToAdminOfOrganization(organization:Organization, user:Account, promoted:number):Organization{
   let account:any = (organization.members.find(function(element) {
     // The + in front of element.id is to force element.id to be a number
     if(+element.id === promoted) {
