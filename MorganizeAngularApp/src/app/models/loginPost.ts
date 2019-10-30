@@ -1,4 +1,4 @@
-export class LoginCredentials
+export class Account
 {
     id:number;
     name:string;

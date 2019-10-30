@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { LoginCredentials } from 'src/app/models/loginPost';
+import { Account } from 'src/app/models/loginPost';
 import { CreateUserService } from 'src/app/services/create-user.service'
 import { DataServiceService } from 'src/app/services/data-service.service';
 import { Router } from '@angular/router';
@@ -14,7 +14,7 @@ export class CreateUserPageComponent implements OnInit {
   email:string;
   username:string;
   password:string;
-  user:LoginCredentials = new LoginCredentials(0, "", "", "", "", []);
+  user:Account = new Account(0, "", "", "", "", []);
 
   constructor(private create:CreateUserService, private transfer:DataServiceService, private router:Router) { }
 

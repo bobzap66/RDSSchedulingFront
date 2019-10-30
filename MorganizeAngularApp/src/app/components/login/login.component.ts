@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { LoginCredentials } from 'src/app/models/loginPost';
+import { Account } from 'src/app/models/loginPost';
 import { LoginService } from 'src/app/services/login.service';
 import { Router } from '@angular/router';
 import { DataServiceService } from 'src/app/services/data-service.service';
@@ -16,8 +16,8 @@ export class LoginComponent implements OnInit {
 
   username:string = "";
   password:string = "";
-  lc:LoginCredentials = new LoginCredentials(0, "", "", "", "", []);
-  currentUser:LoginCredentials;
+  lc:Account = new Account(0, "", "", "", "", []);
+  currentUser:Account;
 
   onSubmitLogin(username:string, password:string)
   {

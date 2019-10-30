@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { LoginCredentials } from 'src/app/models/loginPost';
+import { Account } from 'src/app/models/loginPost';
 import { Subject } from 'rxjs';
 
 
@@ -15,7 +15,7 @@ export class LoginService
   login_url:string = "";
   local_url:string = "";
   lcJson:string = "";
-  static user = new Subject<LoginCredentials>();
+  static user = new Subject<Account>();
   
   constructor(private http:HttpClient) 
   {
@@ -25,10 +25,12 @@ export class LoginService
 
    headers = new HttpHeaders({ 'Content-Type':'application/json' });
 
-    sendLoginInformation(lc:LoginCredentials):LoginCredentials
+    sendLoginInformation(lc:Account):Account
     {
-         this.http.post<LoginCredentials>(this.login_url, lc, {headers:this.headers}).subscribe(
-      (response:LoginCredentials) =>
+
+         this.http.post<Account>(this.local_url, lc, {headers:this.headers}).subscribe(
+      (response:Account) =>
+
       {
          lc.id = response.id;
          lc.name = response.name;
@@ -38,10 +40,7 @@ export class LoginService
        });
        
          return lc;
-          
-       
+             
     }
-
-  
-  
+ 
 }

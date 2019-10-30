@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { LoginComponent } from '../components/login/login.component';
-import { LoginCredentials } from '../models/loginPost';
+import { Account } from '../models/loginPost';
 import { MorganizeEvent } from '../models/morganizeEvent';
 
 @Injectable({
@@ -9,10 +9,10 @@ import { MorganizeEvent } from '../models/morganizeEvent';
 })
 export class DataServiceService 
 {
-  emptyLogin:LoginCredentials = new LoginCredentials(0, "", "", "", "" ,[]);
+  emptyLogin:Account = new Account(0, "", "", "", "" ,[]);
   emptyEvents:MorganizeEvent[];
 
-  private source  = new BehaviorSubject<LoginCredentials>(this.emptyLogin);
+  private source  = new BehaviorSubject<Account>(this.emptyLogin);
   currentFetch = this.source.asObservable();
 
   private source2  = new BehaviorSubject<MorganizeEvent[]>(this.emptyEvents);
@@ -23,7 +23,7 @@ export class DataServiceService
 
    }
 
-   changeMessage(loginCre: LoginCredentials)
+   changeMessage(loginCre: Account)
    {
      this.source.next(loginCre);
      
