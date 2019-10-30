@@ -1,1 +1,21 @@
-<p>organization-list-item works!</p>
+<style>
+    div.organization-list-item{
+        height: 80px;
+        width: 100%;
+        background-color: EFE8BF;
+    }
+    div.organiztion-title{
+        font-size: 24px;
+    }
+    div.organization-description{
+        font-size: 16px;
+    }
+    div.organization-link{
+        height: 100%
+    }
+</style>
+
+<div class="organization-list-item organization-link" (ngclick)="handleClick()"> 
+    <div class="organization-title">{{organization.name}}</div>
+    <div class="organization-description">{{organization.description}}</div>
+</div>>

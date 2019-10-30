@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Organization } from 'src/app/models/organization';
 
 @Component({
   selector: 'app-organization-list-item',
@@ -7,7 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OrganizationListItemComponent implements OnInit {
 
+  @Input() organization:Organization;
+
   constructor() { }
+
+  handleClick(){
+    console.log(this.organization.name + " clicked");
+  }
 
   ngOnInit() {
   }
