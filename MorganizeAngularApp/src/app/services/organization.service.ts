@@ -81,7 +81,7 @@ export class OrganizationService {
     if(+element.id === promoted) {
       return element;
     }
-  });
+  }));
   this.http.post<Organization>(`${this.remote_url}/user/${user.id}/organizations/${organization.o_id}`, account,
   {headers:this.headers}).subscribe (
     (response:Organization) => {
