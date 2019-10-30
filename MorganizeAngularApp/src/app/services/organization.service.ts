@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Account } from 'src/app/models/loginPost';
 import { Organization } from 'src/app/models/organization';
+import { Membership } from 'src/app/models/membership';
 import {
   Router, Resolve,
   RouterStateSnapshot,
@@ -45,7 +46,7 @@ export class OrganizationService {
 
  headers = new HttpHeaders({ 'Content-Type':'application/json'});
  
- searchEvents(tag:string):Organization[]{
+ searchOrganizations(tag:string):Organization[]{
   let organizations:Organization[];
   let uri:string = `/organization?tag=${tag}`
   this.http.get(this.local_url+uri).subscribe(
@@ -82,7 +83,9 @@ export class OrganizationService {
       return element;
     }
   }));
-  this.http.post<Organization>(`${this.remote_url}/user/${user.id}/organizations/${organization.o_id}`, account,
+
+  this.http.post<Organization>(`${this.remote_url}/users/${user.id}/organizations/${organization.o_id}`, account,
+
   {headers:this.headers}).subscribe (
     (response:Organization) => {
       organization = Organization.createOrganization(response);
@@ -91,12 +94,12 @@ export class OrganizationService {
   return organization;
 }
  deleteOrganizationAsAdmin(organization:Organization, user:Account):void{
-  this.http.delete<Organization>(`${this.remote_url}/user/${user.id}/organizations/${organization.o_id}`, 
+  this.http.delete<Organization>(`${this.remote_url}/users/${user.id}/organizations/${organization.o_id}`, 
   {headers:this.headers})
 }
 
  updateOrganizationAsAdmin(organization:Organization, user:Account):Organization{
-  this.http.post<Organization>(`${this.remote_url}/user/${user.id}/organizations/${organization.o_id}`, organization,
+  this.http.post<Organization>(`${this.remote_url}/users/${user.id}/organizations/${organization.o_id}`, organization,
   {headers:this.headers}).subscribe (
     (response:Organization) => {
       organization = Organization.createOrganization(response);
@@ -106,12 +109,7 @@ export class OrganizationService {
 }
 
 getOrganizationAsAdmin(organization:Organization, user:Account):Organization{
-  this.http.get<Organization>(`${this.remote_url}/user/${user.id}/organizations/${organization.o_id}`, 
-  {headers:this.headers}).subscribe (
-    (response:Organization) => {
-      organization = Organization.createOrganization(response);
-    }
-  )
+ organization = this.getOrganization(organization);
   return organization;
 }
  createOrganization(organization:Organization, user:Account):Organization {
@@ -125,19 +123,14 @@ getOrganizationAsAdmin(organization:Organization, user:Account):Organization{
  }
 
  
-  getOrganizations(user:Account):Array<Organization> {
-    let organizations:Array<Organization>;
-    this.http.get<Array<Organization>>(`${this.remote_url}/user/${user.id}/organizations`, {headers:this.headers}).subscribe(
-      (response:Array<Organization>) => {
-      for(let i = 0; i < response.length; i++) {
-        let organization:Organization;
-        organization = Organization.createOrganization(response[i]);
-        organizations.push(organization);
-``
-        }
+  getMemberships(user:Account):Array<Membership> {
+    let memberships:Array<Membership>;
+    this.http.get<Array<Membership>>(`${this.remote_url}/users/${user.id}/organizations`, {headers:this.headers}).subscribe(
+      (response:Array<Membership>) => {
+      memberships = response;
       
       });
-    return organizations;
+    return memberships;
  
   }
 
