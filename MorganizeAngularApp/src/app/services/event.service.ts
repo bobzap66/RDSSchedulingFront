@@ -66,13 +66,10 @@ export class EventService {
   }
 
   // /users/{u_id}/events/{e_id} GET
-  getAdministeredEvent(user:Account, event:MorganizeEvent):MorganizeEvent{
-    let uri:string = `/users/${user.id}/events/${event.id}`;
-    this.http.get(this.local_url + uri).subscribe(
-      function (response:MorganizeEvent){
-        event = MorganizeEvent.createEvent(response);
-      }
-    );
+  getAdministeredEvent(event:MorganizeEvent):MorganizeEvent{
+    
+    event = this.getEvent(event);
+    
 
     return event;
   }
@@ -138,7 +135,7 @@ export class EventService {
   
   // /organzations/{o_id}/events GET
   getOrganizationEvents(organization:any):MorganizeEvent[]{
-    let uri:string = `/users/${organization.id}/events`;
+    let uri:string = `/organizations/${organization.id}/events`;
     let events:MorganizeEvent[];
     this.http.get(this.local_url + uri).subscribe(
       function (response:MorganizeEvent[]){
@@ -151,7 +148,7 @@ export class EventService {
 
   // /organzations/{o_id}/events POST
   createOrganizationEvent(organization:any, event:MorganizeEvent):MorganizeEvent{
-    let uri:string = `/users/${organization.id}/events`;
+    let uri:string = `/organizations/${organization.id}/events`;
     let headers:HttpHeaders = new HttpHeaders({'Content-Type':'application/json' });
 
     this.http.post(this.local_url+uri, event, {headers:headers}).subscribe(
