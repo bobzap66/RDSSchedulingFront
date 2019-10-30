@@ -45,11 +45,12 @@ export class EventService {
     this.http.get(this.local_url + uri).subscribe(
       function (response:Appointment[]){
        appointments = response;
+      }
     );
-
+      
     return appointments;
   }
-
+  
   // /users/{u_id}/events POST
   createUserEvent(user:Account, ev:MorganizeEvent):MorganizeEvent{
     let uri:string = `/users/${user.id}/events`;
