@@ -17,10 +17,12 @@ export class EventListItemComponent implements OnInit {
 
   @Input() event:MorganizeEvent;
 
-  constructor(private router:Router) {  }
+  constructor(private router:Router) {
+    console.log(this.event);
+    }
 
   handleClick(eventname:string){
-    console.log(eventname + " clicked");
+    console.log(eventname);
     //router.navigate([`organizations/${this.organization.o_id}`])
   }
 
