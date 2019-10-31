@@ -67,7 +67,7 @@ export class EventService {
 
   // /users/{u_id}/events/{e_id} PUT
   updateAdministeredEvent(u_id, event:MorganizeEvent):Promise<MorganizeEvent>{
-    return this.http.put<MorganizeEvent>(`${this.local_url}/users/${u_id}/events/${event.e_id}`, event, {headers: this.headers}).toPromise();
+    return this.http.put<MorganizeEvent>(`${this.local_url}/users/${u_id}/events/${event.id}`, event, {headers: this.headers}).toPromise();
   }
 
   // /users/{u_id}/events/{e_id} DELETE

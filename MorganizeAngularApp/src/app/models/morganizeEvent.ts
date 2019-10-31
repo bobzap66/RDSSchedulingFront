@@ -3,12 +3,12 @@ import { Account } from './loginPost';
 
 export class MorganizeEvent{
   
-  e_id:number;
+  id:number;
   name:string;
-  startDate:number;
-  endDate:number;
+  startdate:number;
+  enddate:number;
   description:string;
-  maxAttendees:number;
+  maxattendees:number;
   location:string;
   organization:Object; //TODO replace with organization object
   appointments:Appointment[];
@@ -25,12 +25,12 @@ export class MorganizeEvent{
   static createEvent(ev:MorganizeEvent){
     let e = new MorganizeEvent();  
     
-    e.e_id = ev.e_id;
+    e.id = ev.id;
     e.name = ev.name;
-    e.startDate = ev.startDate;
-    e.endDate = ev.endDate;
+    e.startdate = ev.startdate;
+    e.enddate = ev.enddate;
     e.description = ev.description;
-    e.maxAttendees = ev.maxAttendees;
+    e.maxattendees = ev.maxattendees;
     e.location = ev.location;
     e.organization = ev.organization;
     e.appointments = ev.appointments;
