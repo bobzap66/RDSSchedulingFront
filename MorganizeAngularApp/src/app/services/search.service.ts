@@ -29,7 +29,6 @@ export class SearchService
   searchEvent(input:string)
   {
     let include = "";
-    console.log(input);
     if(input !== "")
     {
         include += `?tag=${input}`;
@@ -45,7 +44,6 @@ export class SearchService
   searchOrganizations(input:string)
   {
     let include = "";
-    console.log(input);
     if(input !== "")
     {
         include += `?tag=${input}`;

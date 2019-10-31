@@ -19,16 +19,12 @@ export class EventListItemComponent implements OnInit {
 
   constructor(private router:Router) {  }
 
-  handleClick(){
-    console.log(this.event.e_id + " clicked");
+  handleClick(eventname:string){
+    console.log(eventname + " clicked");
     //router.navigate([`organizations/${this.organization.o_id}`])
   }
 
 
-  handleClick(){
-    console.log(this.event.name + " clicked");
-    //router.navigate([`organizations/${this.organization.o_id}`])
-  }
 
   ngOnInit() {
   }
