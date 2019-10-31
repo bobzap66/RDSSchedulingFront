@@ -1,6 +1,10 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { MorganizeEvent } from 'src/app/models/morganizeEvent';
+
 import { Router } from '@angular/router';
+
+import { Appointment } from 'src/app/models/appointment';
+
 
 @Component({
   selector: 'app-event-list-item',
@@ -8,6 +12,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./event-list-item.component.css']
 })
 export class EventListItemComponent implements OnInit {
+
 
   @Input() event:MorganizeEvent;
 
@@ -17,6 +22,7 @@ export class EventListItemComponent implements OnInit {
     console.log(this.event.e_id + " clicked");
     //router.navigate([`organizations/${this.organization.o_id}`])
   }
+
 
   ngOnInit() {
   }
