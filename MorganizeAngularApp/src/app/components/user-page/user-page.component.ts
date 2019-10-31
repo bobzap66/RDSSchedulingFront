@@ -3,7 +3,10 @@ import { Account } from 'src/app/models/loginPost';
 import { DataServiceService } from 'src/app/services/data-service.service';
 import { SearchService } from 'src/app/services/search.service'
 import { MorganizeEvent } from 'src/app/models/morganizeEvent';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { EventService } from 'src/app/services/event.service';
+import { Appointment } from 'src/app/models/appointment';
+import { LoginService } from 'src/app/services/login.service';
 
 @Component({
   selector: 'app-user-page',
@@ -16,11 +19,13 @@ export class UserPageComponent implements OnInit
   searchBy:string;
   typeOfSearch:string;
   events:MorganizeEvent[];
+  appointments:Appointment[];
 
 
-  constructor(private transfer:DataServiceService, private search:SearchService, private router:Router)
+  constructor(private transfer:DataServiceService, private search:SearchService, private router:Router, private eventService:EventService, private activeRoute:ActivatedRoute)
    {
-      
+    
+    
      
    } 
 
@@ -38,12 +43,18 @@ export class UserPageComponent implements OnInit
       }
    }
 
-   
+  
 
   ngOnInit() 
   {
     this.transfer.currentFetch.subscribe(current => this.currentUser = current);
+    
     console.log(this.currentUser);
+    console.log(this.currentUser.id);
+    
+      this.eventService.getUserAppointments(this.currentUser.id).then((response) =>{
+      this.appointments = response;
+    });
   }
 
 }

@@ -3,7 +3,7 @@ import { Account } from './loginPost';
 
 export class MorganizeEvent{
   
-  id:number;
+  e_id:number;
   name:string;
   startDate:number;
   endDate:number;
@@ -25,7 +25,7 @@ export class MorganizeEvent{
   static createEvent(ev:MorganizeEvent){
     let e = new MorganizeEvent();  
     
-    e.id = ev.id;
+    e.e_id = ev.e_id;
     e.name = ev.name;
     e.startDate = ev.startDate;
     e.endDate = ev.endDate;

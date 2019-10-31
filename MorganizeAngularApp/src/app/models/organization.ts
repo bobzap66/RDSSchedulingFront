@@ -22,7 +22,8 @@ export class Organization
 
     static createOrganization(or:Organization){
         let o = new Organization();  
-        
+
+        o.o_id = or.o_id;
         o.name = or.name;
         o.description = or.description;
         o.members = or.members;
