@@ -45,6 +45,12 @@ export class OrganizationService {
  */
 
  headers = new HttpHeaders({ 'Content-Type':'application/json'});
+
+ getMemberships(account_id:number):Promise<Membership[]>
+ {
+   let uri:string = `users/${account_id}/organizations`
+    return this.http.get<Membership[]>(`${this.local_url + uri}`).toPromise();
+ }
  
  searchOrganizations(tag:string):Organization[]{
   let organizations:Organization[];
@@ -123,7 +129,7 @@ getOrganizationAsAdmin(organization:Organization, user:Account):Promise<Organiza
   
  }
 
- 
+ /*
   getMemberships(user:Account):Array<Membership> {
     let memberships:Array<Membership>;
     this.http.get<Array<Membership>>(`${this.remote_url}/users/${user.id}/organizations`, {headers:this.headers}).subscribe(
@@ -133,7 +139,7 @@ getOrganizationAsAdmin(organization:Organization, user:Account):Promise<Organiza
       });
     return memberships;
  
-  }
+  }*/
 
 }
 

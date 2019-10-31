@@ -1,0 +1,6 @@
+<table>
+        <tr><th>Memberships</th></tr>
+        <tr><th>Name:</th><th>Description</th></tr>
+        <tr *ngFor="let membership of memberships"><td>{{membership.organization.name}}</td><td>{{membership.organization.description}}</td></tr>
+    
+    </table>

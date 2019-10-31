@@ -21,6 +21,7 @@ import { UserListItemComponent } from './components/user-list-item/user-list-ite
 import { EditableEventComponent } from './components/editable-event/editable-event.component';
 import { EditableOrganizationComponent } from './components/editable-organization/editable-organization.component';
 import { AppointmentListComponent } from './components/appointment-list/appointment-list.component';
+import { MembershipListComponent } from './components/membership-list/membership-list.component';
 
 
 @NgModule({
@@ -41,7 +42,8 @@ import { AppointmentListComponent } from './components/appointment-list/appointm
     UserListItemComponent,
     EditableEventComponent,
     EditableOrganizationComponent,
-    AppointmentListComponent
+    AppointmentListComponent,
+    MembershipListComponent
   ],
   imports: [
     BrowserModule,
