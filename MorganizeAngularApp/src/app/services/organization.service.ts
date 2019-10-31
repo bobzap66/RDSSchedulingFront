@@ -67,7 +67,7 @@ promoteToAdminOfOrganization(u_id:number, organization:Organization, promoted:nu
     }
   });
 
-  return this.http.post<Organization>(`${this.remote_url}/users/${u_id}/organizations/${organization.o_id}`,
+  return this.http.post<Organization>(`${this.remote_url}/users/${u_id}/organizations/${organization.id}`,
       account, {headers:this.headers}).toPromise();
 }
 
@@ -77,12 +77,12 @@ deleteOrganizationAsAdmin(u_id:number, o_id:number):Promise<any>{
 }
 
 updateOrganizationAsAdmin(u_id:number, organization:Organization):Promise<Organization>{
-  return this.http.put<Organization>(`${this.remote_url}/users/${u_id}/organizations/${organization.o_id}`,
+  return this.http.put<Organization>(`${this.remote_url}/users/${u_id}/organizations/${organization.id}`,
       organization, {headers:this.headers}).toPromise();
 }
 
 getOrganizationAsAdmin(organization:Organization, user:Account):Promise<Organization>{
-  return this.getOrganization(organization.o_id);
+  return this.getOrganization(organization.id);
 
 }
 
