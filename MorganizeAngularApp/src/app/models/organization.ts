@@ -6,7 +6,7 @@ export class Organization
 {
 
     
-    o_id:number;
+    id:number;
     name:string;
     description:string;
     members:Array<Account>;
@@ -23,7 +23,7 @@ export class Organization
     static createOrganization(or:Organization){
         let o = new Organization();  
 
-        o.o_id = or.o_id;
+        o.id = or.id;
         o.name = or.name;
         o.description = or.description;
         o.members = or.members;

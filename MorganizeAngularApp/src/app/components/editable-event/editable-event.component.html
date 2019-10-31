@@ -1,1 +1,44 @@
-<p>editable-event works!</p>
+
+<section class="event form">
+    <h1>Template-driven Form Example:</h1>
+    <form #f="ngForm" (ngSubmit)="onSubmit()">
+        <p>
+            <label>Event Name:</label>
+            <input type="text" name="name" 
+                [(ngModel)]="event.name" required>
+        </p>
+        <p>
+            <label>Description:</label>
+            <input type="text" name="description" 
+                [(ngModel)]="event.description" required>
+        </p>
+        <p>
+            <label>Max attendees:</label>
+            <input type="number" name="maxattendees" 
+                [(ngModel)]="event.maxattendees" required>
+        </p>
+        <p>
+            <label>Location:</label>
+            <input type="text" name="location" 
+                [(ngModel)]="event.location" required>
+        </p>
+        <!-- <p>
+            <label>Start:</label>
+            <input type="datetime-local"  
+                [(ngModel)]="event.startdate" required>
+        </p>
+        <p>
+            <label>End:</label>
+            <input type="datetime-local"  
+                [(ngModel)]="event.enddate" required>
+        </p> -->
+        <p>
+            <label>Tags:</label>
+            <input type="text" name="tags" 
+                [(ngModel)]="tagString" required>
+        </p>
+        <p>
+            <button onclick="createEvent()">Submit</button>
+        </p>
+    </form>
+</section>

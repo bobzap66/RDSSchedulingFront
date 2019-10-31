@@ -45,39 +45,27 @@ export class OrganizationService {
  */
 
  headers = new HttpHeaders({ 'Content-Type':'application/json'});
+
+ getMemberships(account_id:number):Promise<Membership[]>
+ {
+   let uri:string = `users/${account_id}/organizations`
+    return this.http.get<Membership[]>(`${this.local_url + uri}`).toPromise();
+ }
  
- searchOrganizations(tag:string):Organization[]{
-  let organizations:Organization[];
-  let uri:string = `/organization?tag=${tag}`
-  this.http.get(this.local_url+uri).subscribe(
-    function(response:Organization[]){
-      organizations = response.map((o)=>Organization.createOrganization(o));
-    }
-  )
-  return organizations;
-}
- registerForOrganization(organization:Organization, user:Account):Organization {
-  this.http.post<Organization>(`${this.remote_url}/organizations/${organization.o_id}`, 
-  user, {headers:this.headers}).subscribe(
-    (response:Organization) => {
-      organization = Organization.createOrganization(response);
-    });
-    return organization;
- 
+searchOrganizations(tag:string):Promise<Organization[]>{
+  return this.http.get<Organization[]>(`${this.local_url}/organizations?tag=${tag}`).toPromise();
 }
 
- getOrganization(o_id:number):Promise<Organization>{
+registerForOrganization(o_id:number, user:Account):Promise<Organization> {
+  return this.http.post<Organization>(`${this.remote_url}/organizations/${o_id}`, 
+      user, {headers:this.headers}).toPromise();
+}
+
+getOrganization(o_id:number):Promise<Organization>{
   return this.http.get<Organization>(`${this.local_url}/organizations/${o_id}`).toPromise();
-  
-  /*.subscribe (
-    (response:Organization) => {
-      organization = Organization.createOrganization(response);
-    }
-  )
-  return organization;*/
 }
 
- promoteToAdminOfOrganization(organization:Organization, user:Account, promoted:number):Organization{
+promoteToAdminOfOrganization(u_id:number, organization:Organization, promoted:number):Promise<Organization>{
   let account:any = organization.members.find(function(element) {
     // The + in front of element.id is to force element.id to be a number
     if(+element.id === promoted) {
@@ -85,55 +73,33 @@ export class OrganizationService {
     }
   });
 
-  this.http.post<Organization>(`${this.remote_url}/users/${user.id}/organizations/${organization.o_id}`, account,
-
-  {headers:this.headers}).subscribe (
-    (response:Organization) => {
-      organization = Organization.createOrganization(response);
-    }
-  )
-  return organization;
-}
- deleteOrganizationAsAdmin(organization:Organization, user:Account):void{
-  this.http.delete<Organization>(`${this.remote_url}/users/${user.id}/organizations/${organization.o_id}`, 
-  {headers:this.headers})
+  return this.http.post<Organization>(`${this.remote_url}/users/${u_id}/organizations/${organization.id}`,
+      account, {headers:this.headers}).toPromise();
 }
 
- updateOrganizationAsAdmin(organization:Organization, user:Account):Organization{
-  this.http.post<Organization>(`${this.remote_url}/users/${user.id}/organizations/${organization.o_id}`, organization,
-  {headers:this.headers}).subscribe (
-    (response:Organization) => {
-      organization = Organization.createOrganization(response);
-    }
-  )
-  return organization;
+deleteOrganizationAsAdmin(u_id:number, o_id:number):Promise<any>{
+  return this.http.delete<Organization>(`${this.remote_url}/users/${u_id}/organizations/${o_id}`, 
+  {headers:this.headers}).toPromise();
+}
+
+updateOrganizationAsAdmin(u_id:number, organization:Organization):Promise<Organization>{
+  return this.http.put<Organization>(`${this.remote_url}/users/${u_id}/organizations/${organization.id}`,
+      organization, {headers:this.headers}).toPromise();
 }
 
 getOrganizationAsAdmin(organization:Organization, user:Account):Promise<Organization>{
- return this.getOrganization(organization.o_id);
-  //return organization;
+  return this.getOrganization(organization.id);
+
 }
- createOrganization(organization:Organization, user:Account):Organization {
-   this.http.post<Organization>(`${this.remote_url}/users/${user.id}/organizations`, 
-   organization, {headers:this.headers}).subscribe(
-     (response:Organization) => {
-      organization = Organization.createOrganization(response);
-     });
-     return organization;
-  
- }
+
+
+createOrganization(u_id:number, organization:Organization):Promise<Organization> {
+  return this.http.post<Organization>(`${this.remote_url}/users/${u_id}/organizations`, 
+  organization, {headers:this.headers}).toPromise();
+}
+
 
  
-  getMemberships(user:Account):Array<Membership> {
-    let memberships:Array<Membership>;
-    this.http.get<Array<Membership>>(`${this.remote_url}/users/${user.id}/organizations`, {headers:this.headers}).subscribe(
-      (response:Array<Membership>) => {
-      memberships = response;
-      
-      });
-    return memberships;
- 
-  }
 
 }
 

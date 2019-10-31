@@ -6,7 +6,8 @@ import { MorganizeEvent } from 'src/app/models/morganizeEvent';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { EventService } from 'src/app/services/event.service';
 import { Appointment } from 'src/app/models/appointment';
-import { LoginService } from 'src/app/services/login.service';
+import { Membership } from 'src/app/models/membership';
+import { OrganizationService } from 'src/app/services/organization.service';
 
 @Component({
   selector: 'app-user-page',
@@ -20,11 +21,13 @@ export class UserPageComponent implements OnInit
   typeOfSearch:string;
   events:MorganizeEvent[];
   appointments:Appointment[];
+  memberships:Membership[];
 
 
-  constructor(private transfer:DataServiceService, private search:SearchService, private router:Router, private eventService:EventService, private activeRoute:ActivatedRoute)
+
+  constructor(private transfer:DataServiceService, private search:SearchService, private router:Router, private eventService:EventService, private organizationService:OrganizationService)
    {
-    
+      
     
      
    } 
@@ -33,13 +36,11 @@ export class UserPageComponent implements OnInit
    {
       if(type === "Organization")
       {
-        this.search.searchOrganizations(criteria);
-        this.router.navigate(["/results"]);
+        this.router.navigate(["/results/organizations"], {queryParams: {tag: criteria}});
       }
       if(type === "Event")
       {
-        this.search.searchEvent(criteria);
-        this.router.navigate(["/results"]);
+        this.router.navigate(["/results/events"], {queryParams: {tag: criteria}});
       }
    }
 
@@ -48,13 +49,6 @@ export class UserPageComponent implements OnInit
   ngOnInit() 
   {
     this.transfer.currentFetch.subscribe(current => this.currentUser = current);
-    
-    console.log(this.currentUser);
-    console.log(this.currentUser.id);
-    
-      this.eventService.getUserAppointments(this.currentUser.id).then((response) =>{
-      this.appointments = response;
-    });
   }
 
 }

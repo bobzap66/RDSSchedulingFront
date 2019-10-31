@@ -1,6 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Organization } from 'src/app/models/organization';
-import { DataServiceService } from 'src/app/services/data-service.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -14,8 +13,11 @@ export class OrganizationListItemComponent implements OnInit {
 
   constructor(private router:Router) { }
 
-  handleClick(){
-    console.log(this.organization.o_id + " clicked");
+
+  handleClick(org:Organization)
+  {
+    console.log(org.name + " clicked");
+
     //router.navigate([`organizations/${this.organization.o_id}`])
   }
 

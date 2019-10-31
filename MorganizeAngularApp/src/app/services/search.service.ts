@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { MorganizeEvent } from 'src/app/models/morganizeEvent';
 import { DataServiceService } from 'src/app/services/data-service.service';
 import { Organization } from '../models/organization';
+import { Appointment } from '../models/appointment';
 
 
 @Injectable({
@@ -28,7 +29,6 @@ export class SearchService
   searchEvent(input:string)
   {
     let include = "";
-    console.log(input);
     if(input !== "")
     {
         include += `?tag=${input}`;
@@ -44,7 +44,6 @@ export class SearchService
   searchOrganizations(input:string)
   {
     let include = "";
-    console.log(input);
     if(input !== "")
     {
         include += `?tag=${input}`;
