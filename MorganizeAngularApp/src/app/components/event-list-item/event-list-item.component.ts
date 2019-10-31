@@ -14,6 +14,7 @@ import { Appointment } from 'src/app/models/appointment';
 export class EventListItemComponent implements OnInit {
 
 
+
   @Input() event:MorganizeEvent;
 
   constructor(private router:Router) {  }
@@ -23,6 +24,11 @@ export class EventListItemComponent implements OnInit {
     //router.navigate([`organizations/${this.organization.o_id}`])
   }
 
+
+  handleClick(){
+    console.log(this.event.name + " clicked");
+    //router.navigate([`organizations/${this.organization.o_id}`])
+  }
 
   ngOnInit() {
   }
