@@ -6,7 +6,6 @@ import { MorganizeEvent } from 'src/app/models/morganizeEvent';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { EventService } from 'src/app/services/event.service';
 import { Appointment } from 'src/app/models/appointment';
-import { LoginService } from 'src/app/services/login.service';
 
 @Component({
   selector: 'app-user-page',

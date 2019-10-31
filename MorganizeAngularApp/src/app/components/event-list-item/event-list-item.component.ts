@@ -9,9 +9,14 @@ import { Appointment } from 'src/app/models/appointment';
 })
 export class EventListItemComponent implements OnInit {
 
-  @Input() appointment:Appointment;
+  @Input() event:MorganizeEvent;
 
   constructor() { }
+
+  handleClick(){
+    console.log(this.event.name + " clicked");
+    //router.navigate([`organizations/${this.organization.o_id}`])
+  }
 
   ngOnInit() {
   }
