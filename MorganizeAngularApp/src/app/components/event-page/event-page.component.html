@@ -2,7 +2,7 @@
     <div id="left-column">
         <div>{{event.name}}</div>
         <div>{{event.description}}</div>
-        <app-user-list></app-user-list>
+        <app-user-list [users]="event.attendees"></app-user-list>
     </div>
     <div id="right-column">
         <div>{{event.startdate | datetime}}</div>
