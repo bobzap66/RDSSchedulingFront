@@ -13,8 +13,11 @@ export class OrganizationListItemComponent implements OnInit {
 
   constructor(private router:Router) { }
 
-  handleClick(){
-    console.log(this.organization.id + " clicked");
+
+  handleClick(org:Organization)
+  {
+    console.log(org.name + " clicked");
+
     //router.navigate([`organizations/${this.organization.o_id}`])
   }
 

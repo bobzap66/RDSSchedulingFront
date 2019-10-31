@@ -20,6 +20,7 @@ import { UserListComponent } from './components/user-list/user-list.component';
 import { UserListItemComponent } from './components/user-list-item/user-list-item.component';
 import { EditableEventComponent } from './components/editable-event/editable-event.component';
 import { EditableOrganizationComponent } from './components/editable-organization/editable-organization.component';
+import { AppointmentListComponent } from './components/appointment-list/appointment-list.component';
 
 
 @NgModule({
@@ -39,7 +40,8 @@ import { EditableOrganizationComponent } from './components/editable-organizatio
     UserListComponent,
     UserListItemComponent,
     EditableEventComponent,
-    EditableOrganizationComponent
+    EditableOrganizationComponent,
+    AppointmentListComponent
   ],
   imports: [
     BrowserModule,

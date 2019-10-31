@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DataServiceService } from 'src/app/services/data-service.service';
 import { MorganizeEvent } from 'src/app/models/morganizeEvent';
 import { Organization } from 'src/app/models/organization';
+import { Appointment } from 'src/app/models/appointment';
 
 
 @Component({

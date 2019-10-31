@@ -6,7 +6,6 @@ import { MorganizeEvent } from 'src/app/models/morganizeEvent';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { EventService } from 'src/app/services/event.service';
 import { Appointment } from 'src/app/models/appointment';
-import { LoginService } from 'src/app/services/login.service';
 
 @Component({
   selector: 'app-user-page',
@@ -48,9 +47,6 @@ export class UserPageComponent implements OnInit
   ngOnInit() 
   {
     this.transfer.currentFetch.subscribe(current => this.currentUser = current);
-    
-    console.log(this.currentUser);
-    console.log(this.currentUser.id);
     
       this.eventService.getUserAppointments(this.currentUser.id).then((response) =>{
       this.appointments = response;

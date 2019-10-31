@@ -4,6 +4,7 @@ import { LoginComponent } from '../components/login/login.component';
 import { Account } from '../models/loginPost';
 import { MorganizeEvent } from '../models/morganizeEvent';
 import { Organization } from '../models/organization';
+import { Appointment } from '../models/appointment';
 
 @Injectable({
   providedIn: 'root'
