@@ -45,7 +45,7 @@ export class EventService {
   // /users/{u_id}/events GET
 
   getUserAppointments(u_id:number):Promise<Appointment[]>{
-    return this.http.get<Appointment[]>(`${this.local_url}/users/${u_id}`).toPromise();
+    return this.http.get<Appointment[]>(`${this.local_url}/users/${u_id}/events`).toPromise();
 
   }
 

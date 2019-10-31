@@ -3,8 +3,8 @@
          <table>
          
 
-                 <tr *ngFor = "let event of events">
-                     <td> {{event.name}} </td>
+                 <tr>
+                     <app-event-list-item *ngFor="let appointment of appointments" [appointment]="appointment"></app-event-list-item>
                      
                  </tr>
              
