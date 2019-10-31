@@ -8,7 +8,7 @@ import { Tag } from 'src/app/models/tag'
   styleUrls: ['./editable-event.component.css']
 })
 export class EditableEventComponent implements OnInit {
-  event:MorganizeEvent;
+  @Input() event:MorganizeEvent;
   tagString:string;
 
 createEvent() {
@@ -25,7 +25,7 @@ createTagObjectsFromString() {
     };
   }
 
-  constructor() { }
+  constructor(event:MorganizeEvent, default=null) { }
 
   ngOnInit() {
   }
