@@ -1,10 +1,10 @@
 <div class="event-list-item event-link"> 
-    <div class="organization-title">{{event.name}}</div>
+    <div class="event-title">{{event.name}}</div>
     <br>
-    <div class="organization-description">{{event.description}}</div>
+    <div class="event-description">{{event.description}}</div>
     <br><br><br>
-    <div class="organization-start-time">{{event.starttime|datetime}}</div>
-    <div class="organization-end-time">{{event.endtime|datetime}}</div>
-    <div class="organization-out-of-attendees">{{event.attendees.length}}/{{event.attendees.maxattendees}}</div>
+    <div class="event-start-time">{{event.starttime|datetime}}</div>
+    <div class="event-end-time">{{event.endtime|datetime}}</div>
+    <div class="event-out-of-attendees">{{event.attendees.length}}/{{event.attendees.maxattendees}}</div>
     <button (click)="handleClick()">Go to event page</button>
 </div>
