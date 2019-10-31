@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { MorganizeEvent } from 'src/app/models/morganizeEvent';
 import { DataServiceService } from 'src/app/services/data-service.service';
 
@@ -8,8 +8,8 @@ import { DataServiceService } from 'src/app/services/data-service.service';
   styleUrls: ['./event-list.component.css']
 })
 export class EventListComponent implements OnInit {
-  
-events:MorganizeEvent[];
+
+@Input()events:MorganizeEvent[];
 
 
   constructor(private transferSearch:DataServiceService) { }

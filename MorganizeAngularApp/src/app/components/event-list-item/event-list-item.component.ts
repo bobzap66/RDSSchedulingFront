@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { MorganizeEvent } from 'src/app/models/morganizeEvent';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-event-list-item',
@@ -7,7 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EventListItemComponent implements OnInit {
 
-  constructor() { }
+  @Input() event:MorganizeEvent;
+
+  constructor(private router:Router) {  }
+
+  handleClick(){
+    console.log(this.event.e_id + " clicked");
+    //router.navigate([`organizations/${this.organization.o_id}`])
+  }
 
   ngOnInit() {
   }
