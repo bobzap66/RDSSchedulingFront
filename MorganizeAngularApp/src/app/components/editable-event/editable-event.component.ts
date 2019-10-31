@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MorganizeEvent } from 'src/app/models/morganizeEvent';
 import { Tag } from 'src/app/models/tag'
-import {}
 
 @Component({
   selector: 'app-editable-event',
