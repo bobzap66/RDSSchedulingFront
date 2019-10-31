@@ -15,7 +15,7 @@ export class OrganizationListComponent implements OnInit {
   constructor(private transferSearch:DataServiceService) { }
 
   ngOnInit() {
-    this.transferSearch.getOrganizationResults.subscribe(orgResponse => this.organizations = orgResponse);
+    //this.transferSearch.getOrganizationResults.subscribe(orgResponse => this.organizations = orgResponse);
   }
 
 }

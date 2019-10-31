@@ -36,13 +36,11 @@ export class UserPageComponent implements OnInit
    {
       if(type === "Organization")
       {
-        this.search.searchOrganizations(criteria);
-        this.router.navigate(["/results/organizations"]);
+        this.router.navigate(["/results/organizations"], {queryParams: {tag: criteria}});
       }
       if(type === "Event")
       {
-        this.search.searchEvent(criteria);
-        this.router.navigate(["/results/events"]);
+        this.router.navigate(["/results/events"], {queryParams: {tag: criteria}});
       }
    }
 

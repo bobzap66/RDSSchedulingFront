@@ -1,8 +1,8 @@
 
 <div *ngIf="searchType === 'events'">
-<app-event-list></app-event-list>
+<app-event-list [events]="events"></app-event-list>
 </div>
 
 <div *ngIf="searchType === 'organizations'">
-<app-organization-list></app-organization-list>
+<app-organization-list [organizations]="orgs"></app-organization-list>
 </div>
