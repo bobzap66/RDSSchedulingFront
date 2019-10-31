@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { MorganizeEvent } from 'src/app/models/morganizeEvent';
 import { DataServiceService } from 'src/app/services/data-service.service';
 import { Appointment } from 'src/app/models/appointment';
 import { EventService } from 'src/app/services/event.service';
@@ -11,10 +12,10 @@ import { Account } from 'src/app/models/loginPost'
   styleUrls: ['./event-list.component.css']
 })
 export class EventListComponent implements OnInit {
-  
-@Input() appointments:Appointment[];
-currentUser:Account;
- 
+
+
+@Input()events:MorganizeEvent[];
+
 
 
   constructor(private eventService:EventService, private transfer:DataServiceService) { }
