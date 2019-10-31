@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { MorganizeEvent } from '../models/morganizeEvent';
 import { Account } from '../models/loginPost';
 import { Appointment } from '../models/appointment';
+import { DataServiceService } from './data-service.service';//delete after test
 
 
 @Injectable({
@@ -12,7 +13,9 @@ export class EventService {
 
   login_url = "";
   local_url = "";
+
   headers:HttpHeaders = new HttpHeaders({'Content-Type':'application/json' });
+
   constructor(private http:HttpClient) 
   {
     this.login_url = "http://ec2-52-202-225-1.compute-1.amazonaws.com:9999";
@@ -37,10 +40,12 @@ export class EventService {
     GET : get organizations hosted events
     POST : create an event hosted by the organization  
   */
+
  
   // /users/{u_id}/events GET
   getUserAppointments(u_id:number):Promise<Appointment[]>{
     return this.http.get<Appointment[]>(`${this.local_url}/users/${u_id}`).toPromise();
+
   }
   
   // /users/{u_id}/events POST

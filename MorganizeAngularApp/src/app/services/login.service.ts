@@ -25,21 +25,12 @@ export class LoginService
 
    headers = new HttpHeaders({ 'Content-Type':'application/json' });
 
-    sendLoginInformation(lc:Account):Account
+    sendLoginInformation(lc:Account):Promise<Account>
     {
 
-         this.http.post<Account>(this.local_url, lc, {headers:this.headers}).subscribe(
-      (response:Account) =>
-
-      {
-         lc.id = response.id;
-         lc.name = response.name;
-         lc.email = response.email;
-         lc.groups = response.groups;
+         return this.http.post<Account>(this.local_url, lc, {headers:this.headers}).toPromise();
+;       
          
-       });
-       
-         return lc;
              
     }
  
