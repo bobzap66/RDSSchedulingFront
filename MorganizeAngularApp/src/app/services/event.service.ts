@@ -12,7 +12,7 @@ export class EventService {
 
   login_url = "";
   local_url = "";
-
+  headers:HttpHeaders = new HttpHeaders({'Content-Type':'application/json' });
   constructor(private http:HttpClient) 
   {
     this.login_url = "http://ec2-52-202-225-1.compute-1.amazonaws.com:9999";
@@ -37,127 +37,62 @@ export class EventService {
     GET : get organizations hosted events
     POST : create an event hosted by the organization  
   */
-
+ 
   // /users/{u_id}/events GET
-  getUserAppointments(user:Account):Appointment[]{
-    let uri:string = `/users/${user.id}/events`;
-    let appointments:Appointment[];
-    this.http.get(this.local_url + uri).subscribe(
-      function (response:Appointment[]){
-       appointments = response;
-      }
-    );
-      
-    return appointments;
+  getUserAppointments(u_id:number):Promise<Appointment[]>{
+    return this.http.get<Appointment[]>(`${this.local_url}/users/${u_id}`).toPromise();
   }
   
   // /users/{u_id}/events POST
-  createUserEvent(user:Account, ev:MorganizeEvent):MorganizeEvent{
-    let uri:string = `/users/${user.id}/events`;
-    let headers:HttpHeaders = new HttpHeaders({'Content-Type':'application/json' });
+  createUserEvent(u_id:number, ev:MorganizeEvent):Promise<MorganizeEvent>{
+    return this.http.post<MorganizeEvent>(`${this.local_url}/users/${u_id}`, ev, {headers: this.headers}).toPromise();
+  };
 
-    this.http.post(this.local_url+uri, ev, {headers:headers}).subscribe(
-      function(response:MorganizeEvent){
-        ev = MorganizeEvent.createEvent(response);
-      }
 
-    );
-    return ev;
-  }
-
-  // /users/{u_id}/events/{e_id} GET
-  getAdministeredEvent(event:MorganizeEvent):MorganizeEvent{
+  // // /users/{u_id}/events/{e_id} GET
+  // getAdministeredEvent(e_id:number):Promise<MorganizeEvent>{
     
-    event = this.getEvent(event);
+  //   event:Promise<MorganizeEvent> = this.getEvent(event);
     
 
-    return event;
-  }
+  //   return event;
+  // }
 
   // /users/{u_id}/events/{e_id} PUT
-  updateAdministeredEvent(user:Account, event:MorganizeEvent):MorganizeEvent{
-    let uri:string = `/users/${user.id}/events/${event.id}`;
-    let headers:HttpHeaders = new HttpHeaders({'Content-Type':'application/json' });
-
-    this.http.put(this.local_url+uri, event, {headers:headers}).subscribe(
-      function(response:MorganizeEvent){
-        event = MorganizeEvent.createEvent(response);
-      }
-
-    );
-    return event;
+  updateAdministeredEvent(u_id, event:MorganizeEvent):Promise<MorganizeEvent>{
+    return this.http.put<MorganizeEvent>(`${this.local_url}/users/${u_id}/events/${event.id}`, event, {headers: this.headers}).toPromise();
   }
 
   // /users/{u_id}/events/{e_id} DELETE
-  deleteAdministeredEvent(user:Account, event:MorganizeEvent):void{
-    let uri:string = `/users/${user.id}/events/${event.id}`;
-    this.http.delete(this.local_url+uri);
-    return;
+  deleteAdministeredEvent(u_id:number, e_id:number):Promise<boolean>{
+    return this.http.delete<boolean>(`${this.local_url}/users/${u_id}/events/${e_id}`).toPromise();
   }
 
   // /events GET
-  searchEvents(tag:string):MorganizeEvent[]{
-    let events:MorganizeEvent[];
-    let uri:string = `/events?tag=${tag}`
-    this.http.get(this.local_url+uri).subscribe(
-      function(response:MorganizeEvent[]){
-        events = response.map((e)=>MorganizeEvent.createEvent(e));
-      }
-    )
-    return events;
+  searchEvents(tag:string):Promise<MorganizeEvent[]>{
+    return this.http.get<MorganizeEvent[]>(`${this.local_url}/events?tag=${tag}`).toPromise();
   }
 
   // /events/{e_id} GET
-  getEvent(event:MorganizeEvent):MorganizeEvent{
-    let uri:string = `/events/${event.id}`;
-    this.http.get(this.local_url+uri).subscribe(
-      function(response:MorganizeEvent){
-        event = MorganizeEvent.createEvent(response);
-      }
-    )
-    return event;
+  getEvent(e_id:number):Promise<MorganizeEvent>{
+    return this.http.get<MorganizeEvent>(`${this.local_url}/events/${e_id}`).toPromise();
   }
 
   // /events/{e_id} POST
-  registerForEvent(user:Account, event:MorganizeEvent):MorganizeEvent{
-    let uri:string = `/events/${event.id}`;
-    let headers:HttpHeaders = new HttpHeaders({'Content-Type':'application/json' });
-
-    this.http.post(this.local_url+uri, user, {headers:headers}).subscribe(
-      function(response:MorganizeEvent){
-        event = MorganizeEvent.createEvent(response);
-      }
-
-    );
-
-    return event;
+  registerForEvent(user:Account, e_id:number):Promise<MorganizeEvent>{
+    return this.http.post<MorganizeEvent>(`${this.local_url}/events/${e_id}`, user, {headers: this.headers}).toPromise();
   }
   
   // /organzations/{o_id}/events GET
-  getOrganizationEvents(organization:any):MorganizeEvent[]{
-    let uri:string = `/organizations/${organization.id}/events`;
-    let events:MorganizeEvent[];
-    this.http.get(this.local_url + uri).subscribe(
-      function (response:MorganizeEvent[]){
-        events = response.map((e) => MorganizeEvent.createEvent(e));
-      }
-    );
-
-    return events;
+  getOrganizationEvents(o_id:number):Promise<MorganizeEvent[]>{
+    return this.http.get<MorganizeEvent[]>(`${this.local_url}/organizeations/${o_id}/events`).toPromise();
+    
   }
 
   // /organzations/{o_id}/events POST
-  createOrganizationEvent(organization:any, event:MorganizeEvent):MorganizeEvent{
-    let uri:string = `/organizations/${organization.id}/events`;
-    let headers:HttpHeaders = new HttpHeaders({'Content-Type':'application/json' });
-
-    this.http.post(this.local_url+uri, event, {headers:headers}).subscribe(
-      function(response:MorganizeEvent){
-        event = MorganizeEvent.createEvent(response);
-      }
-
-    );
-    return event;
+  createOrganizationEvent(o_id:number, event:MorganizeEvent):Promise<MorganizeEvent>{
+    return this.http.post<MorganizeEvent>(`${this.local_url}/organizations/${o_id}`, event, {headers: this.headers}).toPromise();
+  
   }
 
   
