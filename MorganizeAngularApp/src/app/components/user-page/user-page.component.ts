@@ -48,9 +48,6 @@ export class UserPageComponent implements OnInit
   {
     this.transfer.currentFetch.subscribe(current => this.currentUser = current);
     
-    console.log(this.currentUser);
-    console.log(this.currentUser.id);
-    
       this.eventService.getUserAppointments(this.currentUser.id).then((response) =>{
       this.appointments = response;
     });

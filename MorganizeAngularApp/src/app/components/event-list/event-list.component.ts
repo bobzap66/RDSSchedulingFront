@@ -1,11 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { MorganizeEvent } from 'src/app/models/morganizeEvent';
 import { DataServiceService } from 'src/app/services/data-service.service';
-import { Appointment } from 'src/app/models/appointment';
-import { EventService } from 'src/app/services/event.service';
 import { Account } from 'src/app/models/loginPost';
 import { SearchService } from 'src/app/services/search.service';
-import { MorganizeEvent } from 'src/app/models/morganizeEvent';
+
 
 
 

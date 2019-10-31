@@ -4,8 +4,8 @@
     <br>
     <div class="event-description">{{event.description}}</div>
     <br><br><br>
-    <div class="event-start-time">{{event.starttime|datetime}}</div>
-    <div class="event-end-time">{{event.endtime|datetime}}</div>
-    <div class="event-out-of-attendees">{{event.attendees.length}}/{{event.attendees.maxattendees}}</div>
-    <button (click)="handleClick()">Go to event page</button>
+    <div class="event-start-time">{{event.startDate }}</div>
+    <div class="event-end-time">{{event.endDate}}</div>
+  <!--  <div class="event-out-of-attendees">{{event.attendees.length}}/{{event.maxAttendees}}</div> -->
+     <button (click)="handleClick(event.name)">Go to event page</button>
 </div>
