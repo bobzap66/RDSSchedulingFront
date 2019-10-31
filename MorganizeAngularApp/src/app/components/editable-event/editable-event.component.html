@@ -4,22 +4,22 @@
     <form #f="ngForm" (ngSubmit)="onSubmit()">
         <p>
             <label>Event Name:</label>
-            <input type="text"  
+            <input type="text" name="name" 
                 [(ngModel)]="event.name" required>
         </p>
         <p>
             <label>Description:</label>
-            <input type="text"  
+            <input type="text" name="description" 
                 [(ngModel)]="event.description" required>
         </p>
         <p>
             <label>Max attendees:</label>
-            <input type="number"  
+            <input type="number" name="maxattendees" 
                 [(ngModel)]="event.maxattendees" required>
         </p>
         <p>
             <label>Location:</label>
-            <input type="text"  
+            <input type="text" name="location" 
                 [(ngModel)]="event.location" required>
         </p>
         <!-- <p>
@@ -34,7 +34,7 @@
         </p> -->
         <p>
             <label>Tags:</label>
-            <input type="text"  
+            <input type="text" name="tags" 
                 [(ngModel)]="tagString" required>
         </p>
         <p>

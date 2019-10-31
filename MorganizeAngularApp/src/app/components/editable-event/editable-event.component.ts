@@ -26,7 +26,7 @@ createTagObjectsFromString() {
     };
   }
 
-  constructor(event:MorganizeEvent, default=null) { }
+  constructor() { }
 
   ngOnInit() {
   }
