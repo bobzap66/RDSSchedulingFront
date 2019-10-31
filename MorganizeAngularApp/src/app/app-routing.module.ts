@@ -19,7 +19,7 @@ const routes: Routes = [
   {path: "users/:u_id/organizations/:o_id", component:EditableOrganizationComponent},
   {path: "users/:u_id", component:UserPageComponent},
   {path: "events/:e_id", component:EventPageComponent},
-  {path: "organizations/:id", component:OrganizationPageComponent},  
+  {path: "organizations/:o_id", component:OrganizationPageComponent},  
   {path: "**", component:LoginComponent}
 ];
 

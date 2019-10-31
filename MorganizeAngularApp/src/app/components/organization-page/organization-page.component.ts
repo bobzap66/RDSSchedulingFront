@@ -17,8 +17,8 @@ export class OrganizationPageComponent implements OnInit {
 
     this.route.paramMap.subscribe(
       (paramMap:ParamMap) => { 
-        console.log(paramMap.get("id"));
-        this.orgService.getOrganization(parseInt(paramMap.get('id')))
+        console.log(paramMap.get("o_id"));
+        this.orgService.getOrganization(parseInt(paramMap.get('o_id')))
         .then((response) => {
           this.organization = Organization.createOrganization(response);
         });
