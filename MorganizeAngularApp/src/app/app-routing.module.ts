@@ -18,7 +18,7 @@ const routes: Routes = [
   {path: "login", component:LoginComponent}, 
   {path: "userPage", component:UserPageComponent},
   {path: "createUser", component:CreateUserPageComponent},
-  {path: "results", component:ResultsComponent},
+  {path: "results/:type", component:ResultsComponent},
   {path: "users/:u_id/events/createEvent", component:CreateEventPageComponent},
   {path: "users/:u_id/events/:e_id", component:UpdateEventPageComponent},
   {path: "users/:u_id/organizations/createOrganiation", component:CreateOrganizationPageComponent},
