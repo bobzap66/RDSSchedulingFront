@@ -25,9 +25,17 @@ export class LoginComponent implements OnInit {
     this.lc.password = password;
     this.login.sendLoginInformation(this.lc).then((response) => 
     {
+      
        this.currentUser = response;
-       this.transfer.changeMessage(this.currentUser);//sets transfer to other components 
-       this.router.navigate([`/users/${this.currentUser.id}`])
+       if(this.currentUser !== null)
+       {
+        this.transfer.changeMessage(this.currentUser);//sets transfer to other components 
+        this.router.navigate([`/users/${this.currentUser.id}`]);
+       }
+       else
+       {
+         alert("You fucked up");//please change, but for now i like it
+       }
      
     });//api call to retrive login information
     

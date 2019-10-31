@@ -52,7 +52,7 @@ export class UserPageComponent implements OnInit
     console.log(this.currentUser);
     console.log(this.currentUser.id);
     
-    this.eventService.getUserAppointments(this.currentUser).then((response) =>{
+      this.eventService.getUserAppointments(this.currentUser.id).then((response) =>{
       this.appointments = response;
     });
   }

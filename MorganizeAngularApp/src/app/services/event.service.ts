@@ -44,14 +44,7 @@ export class EventService {
  
 
   // /users/{u_id}/events GET
-  getUserAppointments(user:Account):Promise<Appointment[]>
-  {
-    let uri:string = `/users/${user.id}/events`;
-    return this.http.get<Appointment[]>(this.local_url + uri).toPromise();
-    
-      
-   
-  }
+
   
   // /users/{u_id}/events POST
   createUserEvent(user:Account, ev:MorganizeEvent):MorganizeEvent{
