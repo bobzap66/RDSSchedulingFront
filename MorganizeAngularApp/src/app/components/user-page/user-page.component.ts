@@ -24,9 +24,10 @@ export class UserPageComponent implements OnInit
   memberships:Membership[];
 
 
+
   constructor(private transfer:DataServiceService, private search:SearchService, private router:Router, private eventService:EventService, private organizationService:OrganizationService)
    {
-    
+      
     
      
    } 
@@ -36,12 +37,12 @@ export class UserPageComponent implements OnInit
       if(type === "Organization")
       {
         this.search.searchOrganizations(criteria);
-        this.router.navigate(["/results"]);
+        this.router.navigate(["/results/organizations"]);
       }
       if(type === "Event")
       {
         this.search.searchEvent(criteria);
-        this.router.navigate(["/results"]);
+        this.router.navigate(["/results/events"]);
       }
    }
 

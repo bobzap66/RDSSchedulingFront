@@ -1,24 +1,29 @@
 <br><br>
 <div class="container"></div>		
-		<div class="row">
-			
-		  <div id="box" class="col-sm-9 col-md-7 col-lg-5 mx-auto">
-				<form class="form-signin" >
-				  <div class="form-label-group">
-                        <select ref-type>
-                                <option value="Organization">Organization</option>
-                                <option value="Event">Event</option>
-                        </select>
-					<input ref-input type="text" id="searchBar" class="form-control" placeholder="Search for groups or events"  required >
-					<button (click)="searchQuery(type.value, input.value)" type="button"  class="btn btn-lg btn-primary btn-block text-uppercase">Search</button>
-				  </div>
-				 
-				</form>
-				
-			</div>
-		</div>
+		
 
-
+        <div id ="navbar">
+                <nav class="navbar navbar-dark bg-primary">
+                        <!-- Navbar content -->
+                        <div class="row-fluid">
+                        <form class="form-inline" >
+                                <button class="nav-item btn btn-warning btn-outline-success my-2 my-sm-0">Create Event</button>
+                                <button class="nav-item btn btn-warning btn-outline-success my-2 my-sm-0">Create Organization</button>
+                               
+                        </form>
+                        </div>
+                        <div><!--shift this div to the right side of the nav bar-->
+                            <form  class="form-inline">
+                            <select ref-type class="form-control" >
+                                    <option value="Organization">Organization</option>
+                                    <option value="Event">Event</option>
+                            </select>
+                            <input ref-input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                            <button (click)="searchQuery(type.value, input.value)" class="btn btn-warning btn-outline-success my-2 my-sm-0" type="button">Search</button>
+                        </form>
+                        </div>
+                </nav>
+        </div>
         <br><br><br><br>
 <div class="container">
         <div class="row">
