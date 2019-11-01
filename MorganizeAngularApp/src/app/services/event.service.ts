@@ -102,6 +102,11 @@ export class EventService {
   
   }
 
+  getAppointmentByEvent(e_id:number):Promise<Appointment[]>
+  {
+    return this.http.get<Appointment[]>(`${this.local_url}/events/${e_id}/appointments`).toPromise();
+  }
+
   
 
 
