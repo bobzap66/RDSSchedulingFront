@@ -1,6 +1,7 @@
 import { Appointment } from './appointment';
 import { Account } from './loginPost'; 
 import { Tag } from './tag';
+import { Organization } from './organization';
 
 export class MorganizeEvent{
   
@@ -11,12 +12,8 @@ export class MorganizeEvent{
   description:string;
   maxattendees:number;
   location:string;
-  organization:Object; //TODO replace with organization object
-  appointments:Appointment[];
+  organization:Organization; //TODO replace with organization object
   tags:Tag[];
-
-  admins:Account[];
-  attendees:Account[];
 
 
   constructor(){
@@ -35,12 +32,8 @@ export class MorganizeEvent{
     e.maxattendees = ev.maxattendees;
     e.location = ev.location;
     e.organization = ev.organization;
-    e.appointments = ev.appointments;
 
     e.tags = ev.tags
-
-    e.admins = ev.appointments.filter((appt)=>appt.type === "ADMIN").map((appt)=>appt.account);
-    e.attendees = ev.appointments.filter((appt)=>appt.type === "MEMBER").map((appt)=>appt.account);
 
     return e;
   }
