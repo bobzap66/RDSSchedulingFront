@@ -1,11 +1,54 @@
-
-<div class="event-list-item event-link" *ngIf="event"> 
-    <div class="event-title">{{event.name}}</div>
-    <br>
-    <div class="event-description">{{event.description}}</div>
-    <br><br><br>
-    <div class="event-start-time">Start: {{event.startdate | datetime }}</div>
-    <div class="event-end-time">End: {{event.enddate | datetime}}</div>
-    <div class="event-out-of-attendees">{{event.attendees.length}}/{{event.maxattendees}}</div>
-     <button (click)="handleClick()">Go to event page</button>
+<style>
+  div.event-list-item{
+    margin: 5px;
+    padding: 5px;
+    background-color: #EEEEBB;
+    display:flex;
+    width: 600px;
+    font-size: 13px;
+    font-weight:300px;
+  }
+  div.event-list-item-column{
+    flex: 0 0 260px;
+    margin: 10px;
+  }
+  .flex-text-field{
+    height:auto;
+  }
+  .flex-textarea-field{
+    height: auto;
+  }
+  .event-title{
+    font-size: 18px;
+    font-weight:600;
+  }
+  .flex-row{
+    display:flex;
+    flex-direction: row;
+  }
+  .flex-column{
+    display: flex;
+    flex-direction: column;
+  }
+  .flex-header{
+    display:flex;
+    padding-left: 35px;
+    padding-top:15px;
+  }
+</style>
+<div class="event-list-item" *ngIf="event"> 
+  <div class="flex-column">
+    <div class="flex-header"><div class="event-title flex-text-field">{{event.name}}</div></div>
+    <div class="flex-row">
+      <div class="event-list-item-column">
+        <div class="event-description flex-textarea-field">{{event.description}}</div>
+      </div>
+        <div class="event-list-item-column">
+          <div class="flex-text-field">Location: {{event.location}}</div>
+          <div class="event-start-time flex-text-field">Start: {{event.startdate | datetime }}</div>
+          <div class="event-end-time flex-text-field">End: {{event.enddate | datetime}}</div>
+          <button (click)="handleClick()">Go to event page</button>
+        </div>  
+    </div>
+  </div>
 </div>

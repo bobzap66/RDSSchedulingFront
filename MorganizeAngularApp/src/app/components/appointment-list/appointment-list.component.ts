@@ -12,14 +12,14 @@ import { DataServiceService } from 'src/app/services/data-service.service';
 export class AppointmentListComponent implements OnInit {
   
   currentUser:Account;
-  appontments:Appointment[];
+  appointments:Appointment[];
 
   constructor(private eventService:EventService, private transfer:DataServiceService) { }
 
   ngOnInit() {
     this.transfer.currentFetch.subscribe(response => this.currentUser = response);
     this.eventService.getUserAppointments(this.currentUser.id).then((response) =>{
-      this.appontments = response;
+      this.appointments = response;
     });
   }
 
