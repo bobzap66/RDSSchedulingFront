@@ -31,7 +31,6 @@ export class EditableOrganizationComponent implements OnInit {
     for(let i = 0; i < tagNames.length; i++)
      {
       let temp:Tag = new Tag();
-      temp.id = 0;
       temp.tag = tagNames[i];
       console.log(temp);
       this.organization.tags.push(temp);
