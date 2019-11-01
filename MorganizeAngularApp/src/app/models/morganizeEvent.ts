@@ -20,6 +20,7 @@ export class MorganizeEvent{
 
 
   constructor(){
+    this.tags = []
 
   }
 

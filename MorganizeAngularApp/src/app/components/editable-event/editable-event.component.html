@@ -1,7 +1,7 @@
 
 <section class="event form">
     <h1>Template-driven Form Example:</h1>
-    <form #f="ngForm" (ngSubmit)="onSubmit()">
+    <form #f="ngForm" >
         <p>
             <label>Event Name:</label>
             <input type="text" name="name" 
@@ -22,23 +22,23 @@
             <input type="text" name="location" 
                 [(ngModel)]="event.location" required>
         </p>
-        <!-- <p>
+        <p>
             <label>Start:</label>
-            <input type="datetime-local"  
+            <input type="datetime-local"  name = "starttime"
                 [(ngModel)]="event.startdate" required>
         </p>
         <p>
             <label>End:</label>
-            <input type="datetime-local"  
+            <input type="datetime-local"  name = "endtime"
                 [(ngModel)]="event.enddate" required>
-        </p> -->
+        </p>
         <p>
             <label>Tags:</label>
             <input type="text" name="tags" 
                 [(ngModel)]="tagString" required>
         </p>
         <p>
-            <button onclick="createEvent()">Submit</button>
+            <button (click)="createEvent()">Submit</button>
         </p>
     </form>
 </section>

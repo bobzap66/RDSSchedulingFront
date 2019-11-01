@@ -3,6 +3,8 @@ import { Organization } from 'src/app/models/organization';
 import { ActivatedRoute, Router, ParamMap } from '@angular/router';
 import { OrganizationService } from 'src/app/services/organization.service';
 import { switchMap } from 'rxjs/operators';
+import { MorganizeEvent } from 'src/app/models/morganizeEvent';
+import { EventService } from 'src/app/services/event.service';
 
 @Component({
   selector: 'app-organization-page',
@@ -13,7 +15,7 @@ export class OrganizationPageComponent implements OnInit {
 
   organization:Organization;
 
-  constructor(private route:ActivatedRoute, private router:Router, private orgService:OrganizationService) {
+  constructor(private eventService:EventService, private route:ActivatedRoute, private router:Router, private orgService:OrganizationService) {
 
     this.route.paramMap.subscribe(
       (paramMap:ParamMap) => { 
@@ -21,7 +23,13 @@ export class OrganizationPageComponent implements OnInit {
         this.orgService.getOrganization(parseInt(paramMap.get('o_id')))
         .then((response) => {
           this.organization = Organization.createOrganization(response);
-        });
+          console.log(this.organization);
+        }).then(() =>
+          this.eventService.getOrganizationEvents(parseInt(paramMap.get('o_id')))
+          .then((response) =>{
+            this.organization.events = response.map((ev) => MorganizeEvent.createEvent(ev))
+          })
+        );
       
       }
     );

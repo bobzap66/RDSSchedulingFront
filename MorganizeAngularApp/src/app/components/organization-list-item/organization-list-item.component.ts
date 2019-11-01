@@ -14,11 +14,9 @@ export class OrganizationListItemComponent implements OnInit {
   constructor(private router:Router) { }
 
 
-  handleClick(org:Organization)
+  handleClick()
   {
-    console.log(org.name + " clicked");
-
-    //router.navigate([`organizations/${this.organization.o_id}`])
+    this.router.navigate([`organizations/${this.organization.id}`])
   }
 
   ngOnInit() {
