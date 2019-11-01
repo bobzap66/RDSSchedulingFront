@@ -1,15 +1,25 @@
 <div *ngIf="event">
     <div id="left-column">
-        <div>{{event.name}}</div>
+        <div><h1>{{event.name}}</h1></div>
+        <div *ngIf="currentlyAttending === true"><h6>*your currently signed up for this event</h6></div>
         <div>{{event.description}}</div>
-        <app-user-list [users]="event.attendees"></app-user-list>
+       <!-- <app-user-list [users]="event.attendees"></app-user-list>-->
     </div>
     <div id="right-column">
         <div>{{event.startdate | datetime}}</div>
         <div>{{event.enddate | datetime}}</div>
         <div>{{event.location}}</div>
-
+        <div>Slots left: {{slotsOpen}}</div>
+        <!-- <div>{{eventAppointment.attending.length}}</div> -->
     </div>
-    <button (click)="joinEvents()" id="join-event-btn">Join Event</button> 
-
+    <div>
+        <h3>Who is Attending</h3>
+        <p *ngFor="let account of peopleAttending">{{account.name}}</p>
+    </div>
+    <div *ngIf="currentlyAttending === false">
+        <button (click)="joinEvents()" id="join-event-btn">Join Event</button> 
+    </div>
+    <div *ngIf="currentlyAttending === true">
+        <button (click)="leaveEvent()" id="leave-event=btn">Leave Event</button>
+    </div>
 </div>

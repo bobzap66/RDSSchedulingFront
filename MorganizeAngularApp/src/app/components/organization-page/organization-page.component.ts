@@ -5,6 +5,8 @@ import { OrganizationService } from 'src/app/services/organization.service';
 import { switchMap } from 'rxjs/operators';
 import { MorganizeEvent } from 'src/app/models/morganizeEvent';
 import { EventService } from 'src/app/services/event.service';
+import { DataServiceService} from 'src/app/services/data-service.service'; 
+import { Account } from 'src/app/models/loginPost';
 
 @Component({
   selector: 'app-organization-page',
@@ -14,8 +16,9 @@ import { EventService } from 'src/app/services/event.service';
 export class OrganizationPageComponent implements OnInit {
 
   organization:Organization;
+  currentUser:Account; 
 
-  constructor(private eventService:EventService, private route:ActivatedRoute, private router:Router, private orgService:OrganizationService) {
+  constructor(private transfer:DataServiceService, private eventService:EventService, private route:ActivatedRoute, private router:Router, private orgService:OrganizationService) {
 
     this.route.paramMap.subscribe(
       (paramMap:ParamMap) => { 
@@ -34,12 +37,21 @@ export class OrganizationPageComponent implements OnInit {
       }
     );
    }
-
+  
+   //joinOrganization
+   joinOrganization(){
+     this.organization.id;
+     this.orgService.registerForOrganization(this.organization.id, this.currentUser).then((response) => {      
+     this.organization = Organization.createOrganization(response);
+     this.router.navigate([`/organizations/${this.organization.id}`])
+    });
+     
+  }
    
 
   ngOnInit() {
     
-    
+    this.transfer.currentFetch.subscribe(current => this.currentUser = current);
   }
 
 }
