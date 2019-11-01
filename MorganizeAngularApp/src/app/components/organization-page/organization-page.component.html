@@ -2,7 +2,8 @@
     
     <app-user-list [users]="organization.members.concat(organization.admins)"></app-user-list>
     <app-event-list [events]="organization.events"></app-event-list>
-
-
+   
+    <button (click)="joinOrganization()" id="join-organization-btn">Join organization</button>
+    
 
 </div>
