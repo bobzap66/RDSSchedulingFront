@@ -12,8 +12,10 @@ import { ActivatedRoute, Router, ParamMap } from '@angular/router'
 })
 export class EditableEventComponent implements OnInit {
   @Input() event:MorganizeEvent;
+  @Input() create:boolean;
   tagString:string;
   u_id:number;
+  callback:(id:number, ev:MorganizeEvent)=>Promise<MorganizeEvent>;
 
 createEvent() {
   
@@ -22,17 +24,16 @@ createEvent() {
   this.event.enddate = this.toJSDate(this.event.enddate).getTime();
   this.route.paramMap.subscribe(
     (paramMap:ParamMap) => { 
-      console.log(paramMap.get("u_id"));
-      this.es.createUserEvent(parseInt(paramMap.get('u_id')), this.event)
+      console.log(paramMap.get("id"));
+      this.callback(parseInt(paramMap.get('id')), this.event)
       .then((response) => {
         
         this.event = MorganizeEvent.createEvent(response);
-        console.log(this.event);
+        this.router.navigate([`/events/${this.event.id}`])
       });
     
     }
   );
-  //this.es.createUserEvent(u_id, this.event);
 }
 
 toJSDate (dT) {
@@ -62,9 +63,21 @@ createTagObjectsFromString() {
     };
   }
 
-  constructor(private es:EventService, private route: ActivatedRoute ) {
+  constructor(private es:EventService, private route: ActivatedRoute, private router:Router ) {
 
-   }
+    if(this.router.url.match(/\/users\/\d+\/events/i)){
+      if(this.create){
+        this.callback = this.es.createUserEvent;
+      }else{
+        this.callback = this.es.updateAdministeredEvent;
+      }
+    }else if(this.router.url.match(/\/organizations\/\d+\/events/i)){
+      this.callback = this.es.createOrganizationEvent;
+    }else{
+      console.log("invalid route");
+    }
+
+  }
 
   ngOnInit() {
  
