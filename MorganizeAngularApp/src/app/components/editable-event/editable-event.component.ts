@@ -16,6 +16,7 @@ export class EditableEventComponent implements OnInit {
   tagString:string;
   u_id:number;
   callback:(id:number, ev:MorganizeEvent)=>Promise<MorganizeEvent>;
+  
 
 createEvent() {
   
@@ -48,6 +49,7 @@ toJSDate (dT) {
   //(year, month (0-11), day, hours, minutes, seconds, milliseconds)
   return new Date(date[0], date[1]-1, date[2], time[0], time[1], 0, 0);
 }
+
 
 createTagObjectsFromString() {
     if(this.tagString == undefined) {
