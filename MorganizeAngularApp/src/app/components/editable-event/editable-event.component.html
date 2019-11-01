@@ -25,17 +25,17 @@
         <p>
             <label>Start:</label>
             <input type="datetime-local"  name = "starttime"
-                [(ngModel)]="event.startdate" required min = "minStart" id = "starttime">
+                [(ngModel)]="event.startdate" required id = "starttime">
         </p>
         <p>
             <label>End:</label>
             <input type="datetime-local"  name = "endtime"
-                [(ngModel)]="event.enddate" required>
+                [(ngModel)]="event.enddate" required id = "endtime">
         </p>
         <p>
             <label>Tags:</label>
             <input type="text" name="tags" 
-                [(ngModel)]="tagString" required>
+                [(ngModel)]="tagString" required maxlength = "195">
         </p>
         <p>
             <button (click)="createEvent()">Submit</button>
