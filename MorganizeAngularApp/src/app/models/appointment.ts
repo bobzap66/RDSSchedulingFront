@@ -4,5 +4,6 @@ import { MorganizeEvent } from './morganizeEvent';
 export class Appointment{
     account:Account;
     event:MorganizeEvent;
-    type:string;
+    attending:boolean;
+    admin:boolean;
 }

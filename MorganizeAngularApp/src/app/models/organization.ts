@@ -14,10 +14,6 @@ export class Organization
     admins:Array<Account>;
     events:Array<MorganizeEvent>;
     tags:Tag[];
-    memberships:Array<Membership>
-
-
-
 
     constructor(){
       this.tags = [];
@@ -32,11 +28,7 @@ export class Organization
         o.members = or.members;
         o.events = or.events;
         o.tags = or.tags;
-        o.memberships = or.memberships;
-    
-        o.admins = or.memberships.filter((membership)=>membership.type === "ADMIN").map((membership)=>membership.account);
-        o.members = or.memberships.filter((membership)=>membership.type === "MEMBER").map((membership)=>membership.account);
-    
+
         return o;
       }
 }
