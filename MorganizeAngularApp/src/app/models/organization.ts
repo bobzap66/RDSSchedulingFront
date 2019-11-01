@@ -2,6 +2,7 @@
 import { MorganizeEvent } from 'src/app/models/morganizeEvent';
 import { Membership } from 'src/app/models/membership';
 import { Account } from 'src/app/models/loginPost';
+import { Tag } from './tag';
 export class Organization
 {
 
@@ -12,13 +13,15 @@ export class Organization
     members:Array<Account>;
     admins:Array<Account>;
     events:Array<MorganizeEvent>;
-    tags:Array<string>;
+    tags:Tag[];
     memberships:Array<Membership>
 
 
 
 
-    constructor(){};
+    constructor(){
+      this.tags = [];
+    };
 
     static createOrganization(or:Organization){
         let o = new Organization();  
