@@ -1,1 +1,23 @@
-<p>{{organization.name}}}</p>
+<section class="event form">
+    <h1>Create an Organization:</h1>
+    <form>
+        <p>
+            <label>Organization Name:</label>
+            <input type="text" name="name" 
+                [(ngModel)]="organization.name" required>
+        </p>
+        <p>
+            <label>Description:</label>
+            <input type="text" name="description" 
+                [(ngModel)]="organization.description" required>
+        </p>
+        <p>
+            <label>Tag to add:</label>
+            <input type="text" name="tags" 
+                [(ngModel)]="tagString" required>
+        </p>
+        <p>
+            <button (click)="createOrganization()">Submit</button>
+        </p>
+    </form>
+</section>

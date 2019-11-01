@@ -25,24 +25,13 @@ export class UserPageComponent implements OnInit
 
 
 
-  constructor(private transfer:DataServiceService, private search:SearchService, private router:Router, private eventService:EventService, private organizationService:OrganizationService)
+  constructor(private transfer:DataServiceService)
    {
       
     
      
    } 
 
-   searchQuery(type:string, criteria:string)
-   {
-      if(type === "Organization")
-      {
-        this.router.navigate(["/results/organizations"], {queryParams: {tag: criteria}});
-      }
-      if(type === "Event")
-      {
-        this.router.navigate(["/results/events"], {queryParams: {tag: criteria}});
-      }
-   }
 
   
 
