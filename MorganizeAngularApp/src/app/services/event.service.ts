@@ -90,9 +90,9 @@ export class EventService {
     return this.http.post<MorganizeEvent>(`${this.local_url}/events/${e_id}`, user, {headers: this.headers}).toPromise();
   }
   
-  // /organzations/{o_id}/events GET
+  // /organization/{o_id}/events GET
   getOrganizationEvents(o_id:number):Promise<MorganizeEvent[]>{
-    return this.http.get<MorganizeEvent[]>(`${this.local_url}/organizeations/${o_id}/events`).toPromise();
+    return this.http.get<MorganizeEvent[]>(`${this.local_url}/organizations/${o_id}/events`).toPromise();
     
   }
 

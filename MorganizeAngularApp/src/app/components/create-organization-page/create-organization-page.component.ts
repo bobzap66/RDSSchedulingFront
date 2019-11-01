@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { OrganizationService } from 'src/app/services/organization.service';
+import { Organization } from 'src/app/models/organization';
 
 @Component({
   selector: 'app-create-organization-page',
@@ -7,7 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CreateOrganizationPageComponent implements OnInit {
 
-  constructor() { }
+  @Input() organization:Organization;
+
+  constructor() 
+  { 
+    this.organization = new Organization();
+  }
 
   ngOnInit() {
   }

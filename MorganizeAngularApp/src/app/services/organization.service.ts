@@ -3,12 +3,6 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Account } from 'src/app/models/loginPost';
 import { Organization } from 'src/app/models/organization';
 import { Membership } from 'src/app/models/membership';
-import {
-  Router, Resolve,
-  RouterStateSnapshot,
-  ActivatedRouteSnapshot,
-  NavigationExtras
-}                                 from '@angular/router';
 import { Subject } from 'rxjs';
 
 @Injectable({
@@ -94,12 +88,11 @@ getOrganizationAsAdmin(organization:Organization, user:Account):Promise<Organiza
 
 
 createOrganization(u_id:number, organization:Organization):Promise<Organization> {
-  return this.http.post<Organization>(`${this.remote_url}/users/${u_id}/organizations`, 
-  organization, {headers:this.headers}).toPromise();
+  return this.http.post<Organization>(`${this.local_url}users/${u_id}/organizations`, organization, {headers:this.headers}).toPromise();
 }
 
 
- 
+
 
 }
 

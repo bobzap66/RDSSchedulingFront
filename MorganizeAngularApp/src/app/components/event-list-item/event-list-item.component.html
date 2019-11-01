@@ -7,5 +7,5 @@
     <div class="event-start-time">Start: {{event.startdate | datetime }}</div>
     <div class="event-end-time">End: {{event.enddate | datetime}}</div>
     <div class="event-out-of-attendees">{{event.attendees.length}}/{{event.maxattendees}}</div>
-     <button (click)="handleClick(event)">Go to event page</button>
+     <button (click)="handleClick()">Go to event page</button>
 </div>
