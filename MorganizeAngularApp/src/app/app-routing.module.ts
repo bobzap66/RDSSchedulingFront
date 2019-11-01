@@ -19,12 +19,13 @@ const routes: Routes = [
   {path: "userPage", component:UserPageComponent},
   {path: "createUser", component:CreateUserPageComponent},
   {path: "results/:type", component:ResultsComponent},
-  {path: "users/:u_id/events/createEvent", component:CreateEventPageComponent},
-  {path: "users/:u_id/events/:e_id", component:UpdateEventPageComponent},
+  {path: "users/:id/events/createEvent", component:CreateEventPageComponent},
+  {path: "users/:id/events/:e_id", component:UpdateEventPageComponent},
   {path: "users/:u_id/organizations/createOrganiation", component:CreateOrganizationPageComponent},
   {path: "users/:u_id/organizations/:o_id", component:UpdateOrganizationPageComponent},
   {path: "users/:u_id", component:UserPageComponent},
   {path: "events/:e_id", component:EventPageComponent},
+  {path: "organizations/:id/events/createEvent", component:CreateEventPageComponent},
   {path: "organizations/:o_id", component:OrganizationPageComponent},  
   {path: "**", component:LoginComponent}
 ];
