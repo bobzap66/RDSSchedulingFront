@@ -52,7 +52,7 @@ export class EventService {
   
   // /users/{u_id}/events POST
   createUserEvent(u_id:number, ev:MorganizeEvent):Promise<MorganizeEvent>{
-    return this.http.post<MorganizeEvent>(`${this.local_url}/users/${u_id}`, ev, {headers: this.headers}).toPromise();
+    return this.http.post<MorganizeEvent>(`${this.local_url}/users/${u_id}/events`, ev, {headers: this.headers}).toPromise();
   };
 
 
