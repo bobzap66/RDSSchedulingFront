@@ -11,6 +11,7 @@ import { MorganizeEvent } from 'src/app/models/morganizeEvent';
 export class UpdateEventPageComponent implements OnInit {
 
   event:MorganizeEvent;
+  create:boolean;
 
   constructor(private route:ActivatedRoute, private router:Router, private eventService:EventService) {
     this.route.paramMap.subscribe(
@@ -20,12 +21,13 @@ export class UpdateEventPageComponent implements OnInit {
         .then((response) => {
           this.event = MorganizeEvent.createEvent(response);
         });
-      
       }
     );
+    this.create = false;
    }
 
   ngOnInit() {
+  
   }
 
 }

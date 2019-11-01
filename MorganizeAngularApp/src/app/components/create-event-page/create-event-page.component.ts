@@ -9,12 +9,15 @@ import { MorganizeEvent } from 'src/app/models/morganizeEvent';
 export class CreateEventPageComponent implements OnInit {
 
   event:MorganizeEvent;
+  create:boolean;
 
   constructor() {
     this.event = new MorganizeEvent();
+    this.create = true;
    }
 
   ngOnInit() {
+
   }
 
 }
