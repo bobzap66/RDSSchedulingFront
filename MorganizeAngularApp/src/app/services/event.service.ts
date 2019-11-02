@@ -76,8 +76,14 @@ export class EventService {
   }
 
   // /events GET
-  searchEvents(tag:string):Promise<MorganizeEvent[]>{
-    return this.http.get<MorganizeEvent[]>(`${this.local_url}/events?tag=${tag}`).toPromise();
+  searchEvents(tag:string):Promise<MorganizeEvent[]>
+  {
+    let include = "";
+    if(tag !== "")
+    {
+        include += `?tag=${tag}`;
+    }
+    return this.http.get<MorganizeEvent[]>(`${this.local_url}/events${include}`).toPromise();
   }
 
   // /events/{e_id} GET
