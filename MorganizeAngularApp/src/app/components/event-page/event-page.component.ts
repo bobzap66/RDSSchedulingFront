@@ -41,12 +41,12 @@ export class EventPageComponent implements OnInit {
           console.log(this.allAppointments);
 
           this.allAppointments.forEach(appointment=>{
-            if(appointment.attending === true && appointment.account.id != this.currentUser.id)
+            if(appointment.attending === true && appointment.account.id !== this.currentUser.id)
             {
               this.peopleAttending.push(appointment.account);
               this.ammountAttending++;
             }
-            if(appointment.attending === true)
+            if(appointment.attending === true && appointment.account.id === this.currentUser.id)
             {
                 this.currentlyAttending = true;
                 this.ammountAttending++;
