@@ -79,8 +79,14 @@ export class EventService {
 
 
   // /events GET
-  searchEvents(tag:string):Promise<MorganizeEvent[]>{
-    return this.http.get<MorganizeEvent[]>(`${this.local_url}/events?tag=${tag}`).toPromise();
+  searchEvents(tag:string):Promise<MorganizeEvent[]>
+  {
+    let include = "";
+    if(tag !== "")
+    {
+        include += `?tag=${tag}`;
+    }
+    return this.http.get<MorganizeEvent[]>(`${this.local_url}/events${include}`).toPromise();
   }
 
   // /events/{e_id} GET
@@ -113,6 +119,18 @@ export class EventService {
   getAppointmentByEvent(e_id:number):Promise<Appointment[]>
   {
     return this.http.get<Appointment[]>(`${this.local_url}/events/${e_id}/appointments`).toPromise();
+  }
+
+  filterEventsByTime(events:MorganizeEvent[]):MorganizeEvent[]{
+    return events.filter((ev)=>ev.startdate>Date.now())
+  }
+
+  filterAppointmentsByTime(appointments:Appointment[]):Appointment[]{
+    console.log(appointments);
+    if(!appointments){
+      return [];
+    }
+    return appointments.filter((appt)=>appt.event.startdate>Date.now())
   }
 
   

@@ -1,9 +1,70 @@
-<div *ngIf="organization">
+<style>
+    .organization-page{
+        margin: 0 8%;
+        display:flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    .flex-column{
+        display:flex;
+        flex-direction: column;
+    }
+    .flex-row{
+        display:flex;
+        flex-direction: row;
+    }
+    .organization-page-column-left{
+        width:400px;
+    }
+    .organization-page-header{
+        margin-top: 40px;
+        padding:5px;
+        margin-bottom: 60px;
+    }
+    #join-organization-btn{
+        margin: 5px 0px;
+    }
+    .organization-member-list{
+        width: 200px;
+    }
+    .organization-member-list-wrapper{
+        display:flex;
+        justify-content: center;
+        text-align:center;
+    }
+    #edit-organization-btn{
+        font-size:12px;
+    }
+</style>
+
+<app-nav-bar></app-nav-bar>
+
+<div class="organization-page" *ngIf="organization">
+    <div class="organization-page-column-left flex-column">
+        <div class="organization-page-header">
+            <h1 class="organization-title">{{organization.name}}</h1>
+            <h6>{{organization.description}}</h6>
+            <button id="edit-organization-btn" *ngIf="isAdmin()" (click)="editOrganization()">Edit</button>
+        </div>
+        <div class="organization-member-list-wrapper">
+            <div>
+            <app-member-list class="organization-member-list" [members]="organization.members"></app-member-list>
+                <div *ngIf="!isMember()">
+                    <button (click)="joinOrganization()" id="join-organization-btn">Join organization</button>
+                </div>
+                <div *ngIf="isMember()">
+                    <button (click)="leaveOrganization()" id="join-organization-btn">Leave organization</button>
+                </div>
+            
+            </div>
+        </div>
+    </div>
+        
+    <div *ngIf="organization.events.length > 0">
+        <app-event-list [events]="organization.events"></app-event-list>
+    </div>
     
-    <app-user-list [users]="organization.members.concat(organization.admins)"></app-user-list>
-    <app-event-list [events]="organization.events"></app-event-list>
-   
-    <button (click)="joinOrganization()" id="join-organization-btn">Join organization</button>
+    
     
 
 </div>

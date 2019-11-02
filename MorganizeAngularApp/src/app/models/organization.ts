@@ -10,13 +10,14 @@ export class Organization
     id:number;
     name:string;
     description:string;
-    members:Array<Account>;
-    admins:Array<Account>;
+    members:Array<Membership>;
     events:Array<MorganizeEvent>;
     tags:Tag[];
 
     constructor(){
       this.tags = [];
+      this.members = [];
+      this.events = [];
     };
 
     static createOrganization(or:Organization){
@@ -25,8 +26,6 @@ export class Organization
         o.id = or.id;
         o.name = or.name;
         o.description = or.description;
-        o.members = or.members;
-        o.events = or.events;
         o.tags = or.tags;
 
         return o;

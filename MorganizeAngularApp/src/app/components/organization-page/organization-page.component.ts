@@ -32,7 +32,12 @@ export class OrganizationPageComponent implements OnInit {
           .then((response) =>{
             this.organization.events = response.map((ev) => MorganizeEvent.createEvent(ev))
           })
-        );
+        ).then(()=>{
+          this.orgService.getOrganizationMembers(parseInt(paramMap.get('o_id')))
+          .then((response)=> {
+            this.organization.members = response;
+          })
+        });
       
       }
     );
@@ -47,8 +52,27 @@ export class OrganizationPageComponent implements OnInit {
     });
      
   }
+
+  editOrganization():void{
+    this.router.navigate([`/users/${this.currentUser.id}/organizations/${this.organization.id}`])
+  }
+
+  isAdmin():boolean{
+    if(this.currentUser && this.organization){
+      let userIsAdmin:boolean = this.organization.members.reduce((a,b)=>a || (b.account.id === this.currentUser.id && b.type === "ADMIN"), false)
+      return userIsAdmin;
+    }
+    return false;
+  }
    
-  
+  isMember():boolean{
+    if(this.currentUser && this.organization){
+      let userIsMember:boolean = this.organization.members.reduce((a,b)=>a || (b.account.id === this.currentUser.id), false)
+      return userIsMember;
+    }
+    return false;
+  }
+
   ngOnInit() {
     
     this.transfer.currentFetch.subscribe(current => this.currentUser = current);

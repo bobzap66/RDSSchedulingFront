@@ -1,9 +1,32 @@
-<!-- <table>
-    <tr><th>Events</th></tr>
-    <tr><th>Name:</th><th>Description</th></tr>
-    <tr *ngFor="let appointment of appontments"><td>{{appointment.event.name}}</td><td>{{appointment.event.description}}</td></tr>
 
-</table> -->
+<style>
+    .appt-list-container{
+        border-radius: 4px;
+    }
+    ul{
+        list-style-type: none;
+        margin:0;
+        padding:0;
+    }
+    .list-item-inline-block{
+        display:inline-block;
+    }
+    .appt-list-header{
+        text-align:center;
+        width:100%;
+        margin: 15px 0px;
+        font-size: 30px;
+        font-weight:450;
+
+    }
+</style>
+
+
+<div class="appt-list-container">
+    <h1 class="appt-list-header">Your upcoming events</h1>
 <ul>
-    <app-event-list-item *ngFor="let appointment of appointments" [event]="appointment.event"></app-event-list-item>
+    <li *ngFor="let appointment of eventService.filterAppointmentsByTime(appointments)">
+        <app-event-list-item class="list-item-inline-block" [event]="appointment.event"></app-event-list-item><button (click)="editEvent(appointment)" *ngIf="appointment.admin">Edit event</button>
+    </li>
 </ul>
+</div>
