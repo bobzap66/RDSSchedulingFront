@@ -1,5 +1,24 @@
+<style>
+    .flex-row{
+        display:flex;
+        flex-direction: row;
+        width:auto;
+    }
+    .flex-column-med{
+        width:350px;
+    }
+    .flex-column-big{
+        width:725px;
+    }
+    .flex-row-gap{
+        width:50px;
+    }
+    
+
+</style>
+
 <app-nav-bar></app-nav-bar>
-        <br><br><br><br>
+        <br><br>
 <div class="container">
         <div class="row">
             <div class="col-12">
@@ -17,9 +36,11 @@
                     </div>
                 </div>
             </div>
-                <app-appointment-list></app-appointment-list>
-                <br><br>
-                <app-membership-list></app-membership-list>
+            <div class=flex-row>
+                <div class="flex-column-med"><app-membership-list></app-membership-list></div>
+                <div class=flex-row-gap></div>
+                <div class="flex-column-big"><app-appointment-list></app-appointment-list></div>
+            </div>
         </div>
 </div>
 
