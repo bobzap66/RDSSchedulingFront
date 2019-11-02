@@ -1,19 +1,67 @@
-<div *ngIf="event">
-    <div id="left-column">
-        <div><h1>{{event.name}}</h1></div>
+<style>
+        div.event-list-item{
+          text-align: center;
+          margin: 0 auto;
+          padding: 5px;
+          background-color: #EEEEBB;
+          display:flex;
+          width: 90%;
+          font-size: 30px;
+          font-weight:600px;
+          justify-content: center;
+        }
+        div.event-list-item-column{
+          flex: 0 0 260px;
+          margin: 10px;
+        }
+        .flex-text-field{
+          height:auto;
+          padding: 3px;
+        }
+        .flex-textarea-field{
+          height: auto;
+        }
+        .event-title{
+          font-size: 35px;
+          font-weight:600;
+        }
+        .flex-row{
+          display:flex;
+          flex-direction: row;
+          margin: 0 auto;
+        }
+        .flex-column{
+          display: flex;
+          flex-direction: column;
+        }
+        .flex-header{
+          display:flex;
+          padding-left: 35px;
+          padding-top:15px;
+        }
+</style>
+
+<app-nav-bar></app-nav-bar>
+
+<div class="event-list-item">
+<div  *ngIf="event">
+    <div  id="left-column">
+        <div class="flex-header event-title"><h1>{{event.name}}</h1></div>
         <div *ngIf="currentlyAttending === true"><h6>*your currently signed up for this event</h6></div>
-        <div>{{event.description}}</div>
+        <div>
+        <div><p>{{event.description}}</p></div>
        <!-- <app-user-list [users]="event.attendees"></app-user-list>-->
-    </div>
-    <div id="right-column">
-        <div>{{event.startdate | datetime}}</div>
-        <div>{{event.enddate | datetime}}</div>
-        <div>{{event.location}}</div>
-        <div>Slots left: {{slotsOpen}}</div>
-        <!-- <div>{{eventAppointment.attending.length}}</div> -->
-    </div>
+    
     <div>
-        <h3>Who is Attending</h3>
+        <div class="flex-row">
+            <p>Starting on: {{event.startdate | datetime}} - Ending on: {{event.enddate | datetime}}</p>
+        </div>
+        <div><p>{{event.location}}</p></div>
+        <div><p>Slots left: {{slotsOpen}}</p></div>
+        <!-- <div>{{eventAppointment.attending.length}}</div> -->
+    </div></div>
+    <div>
+        <h1>Who is Attending</h1>
         <p *ngFor="let account of peopleAttending">{{account.name}}</p>
     </div>
     <div *ngIf="currentlyAttending === false">
@@ -22,4 +70,5 @@
     <div *ngIf="currentlyAttending === true">
         <button (click)="leaveEvent()" id="leave-event=btn">Leave Event</button>
     </div>
+</div>
 </div>

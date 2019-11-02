@@ -35,6 +35,18 @@ export class NavBarComponent implements OnInit {
     this.router.navigate([`/users/${this.currentUser.id}/organizations/createOrganiation`])
   }
 
+  logout()
+  {
+    let clearedAccount:Account = new Account(0, "", "", "", "", []);
+    this.transfer.changeMessage(clearedAccount);
+    this.router.navigate(["/login"]);
+  }
+
+  home()
+  {
+    this.router.navigate([`/userPage`]);
+  }
+
   ngOnInit() {
     this.transfer.currentFetch.subscribe(current => this.currentUser = current);
   }
