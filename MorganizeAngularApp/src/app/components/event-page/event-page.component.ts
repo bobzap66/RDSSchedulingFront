@@ -100,35 +100,6 @@ export class EventPageComponent implements OnInit {
 
   ngOnInit() {
     this.transfer.currentFetch.subscribe(current => this.currentUser = current); 
-    this.route.paramMap.subscribe(
-      (paramMap:ParamMap) => { 
-        this.eventService.getEvent(parseInt(paramMap.get('e_id')))
-        .then((response) => {
-          this.event = MorganizeEvent.createEvent(response);
-         console.log(this.event.id);
-         console.log(this.event);
-         this.eventService.getAppointmentByEvent(this.event.id).then((response) =>
-        {
-          this.allAppointments = response;
-          console.log(this.allAppointments);
-
-          this.allAppointments.forEach(appointment=>{
-            if(appointment.attending === true && appointment.account.id != this.currentUser.id)
-            {
-              this.peopleAttending.push(appointment.account);
-              this.ammountAttending++;
-            }
-            if(appointment.attending === true)
-            {
-                this.currentlyAttending = true;
-                this.ammountAttending++;
-            }
-        });
-        this.slotsOpen = this.event.maxattendees - this.ammountAttending;
-       });
-        });
-        
-      });
   }
 
 }
