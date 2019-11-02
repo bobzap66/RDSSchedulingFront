@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router, ParamMap } from '@angular/router';
+import { ActivatedRoute, Router, ParamMap, NavigationEnd } from '@angular/router';
 import { EventService } from 'src/app/services/event.service';
 import { MorganizeEvent } from 'src/app/models/morganizeEvent';
 import { DataServiceService} from 'src/app/services/data-service.service';
@@ -22,6 +22,7 @@ export class EventPageComponent implements OnInit {
   currentlyAttending:boolean = false;
   ammountAttending:number = 0;
   slotsOpen:number = 0;
+  mySubscription:any;
 
   constructor(private transfer:DataServiceService, private route:ActivatedRoute, private router:Router, private eventService:EventService) {
     
@@ -58,7 +59,15 @@ export class EventPageComponent implements OnInit {
       });
 
     
-      
+      this.router.routeReuseStrategy.shouldReuseRoute = function () {
+        return false;
+      };
+      this.mySubscription = this.router.events.subscribe((event) => {
+        if (event instanceof NavigationEnd) {
+          // Trick the Router into believing it's last link wasn't previously loaded
+          this.router.navigated = false;
+        }
+      });
    
 
 
