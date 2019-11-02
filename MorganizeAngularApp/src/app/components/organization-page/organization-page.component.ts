@@ -65,6 +65,13 @@ export class OrganizationPageComponent implements OnInit {
      
   }
 
+  leaveOrganization(){
+    this.orgService.leaveOrganization(this.organization.id, this.currentUser.id).then(()=>
+      this.router.navigate([`/organizations/${this.organization.id}`])
+    );
+    
+  }
+
   editOrganization():void{
     this.router.navigate([`/users/${this.currentUser.id}/organizations/${this.organization.id}`])
   }

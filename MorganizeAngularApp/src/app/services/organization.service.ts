@@ -51,7 +51,7 @@ export class OrganizationService {
   }
 
   registerForOrganization(o_id:number, user:Account):Promise<Organization> {
-    return this.http.post<Organization>(`${this.remote_url}/organizations/${o_id}`, 
+    return this.http.post<Organization>(`${this.local_url}/organizations/${o_id}`, 
         user, {headers:this.headers}).toPromise();
   }
 
@@ -67,12 +67,12 @@ export class OrganizationService {
       }
     });
 
-    return this.http.post<Organization>(`${this.remote_url}/users/${u_id}/organizations/${organization.id}`,
+    return this.http.post<Organization>(`${this.local_url}/users/${u_id}/organizations/${organization.id}`,
         account, {headers:this.headers}).toPromise();
   }
 
   deleteOrganizationAsAdmin(u_id:number, o_id:number):Promise<any>{
-    return this.http.delete<Organization>(`${this.remote_url}/users/${u_id}/organizations/${o_id}`, 
+    return this.http.delete<Organization>(`${this.local_url}/users/${u_id}/organizations/${o_id}`, 
     {headers:this.headers}).toPromise();
   }
 
@@ -94,8 +94,8 @@ export class OrganizationService {
     return this.http.get<Membership[]>(`${this.local_url}organizations/${o_id}/members`).toPromise();
   }
 
-  leaveOrganization(o_id:number, u_id:number):void{
-    this.http.delete(`${this.local_url}organizations/${o_id}/members/${u_id}`)
+  leaveOrganization(o_id:number, u_id:number):Promise<any>{
+    return this.http.delete(`${this.local_url}organizations/${o_id}/members/${u_id}`).toPromise();
   }
 
 
