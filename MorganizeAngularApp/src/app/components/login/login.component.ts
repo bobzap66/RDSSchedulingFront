@@ -19,10 +19,8 @@ export class LoginComponent implements OnInit {
   lc:Account = new Account(0, "", "", "", "", []);
   currentUser:Account;
 
-  onSubmitLogin(username:string, password:string)
+  onSubmitLogin()
   {
-    this.lc.username = username;
-    this.lc.password = password;
     this.login.sendLoginInformation(this.lc).then((response) => 
     {
       
@@ -34,7 +32,8 @@ export class LoginComponent implements OnInit {
        }
        else
        {
-         alert("You fucked up");//please change, but for now i like it
+         alert("Invalid Username or Password");//please change, but for now i like it
+         this.lc.password = "";
        }
      
     });//api call to retrive login information
