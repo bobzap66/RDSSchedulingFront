@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { DataServiceService } from 'src/app/services/data-service.service';
 import { Account } from 'src/app/models/loginPost'
+import { ResultsComponent } from '../results/results.component';
 
 @Component({
   selector: 'app-nav-bar',
@@ -9,7 +10,6 @@ import { Account } from 'src/app/models/loginPost'
   styleUrls: ['./nav-bar.component.css']
 })
 export class NavBarComponent implements OnInit {
-
   currentUser:Account;
   constructor(private router:Router, private transfer:DataServiceService) { }
 

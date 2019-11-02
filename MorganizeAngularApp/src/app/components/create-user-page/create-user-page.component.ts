@@ -31,6 +31,11 @@ export class CreateUserPageComponent implements OnInit {
     this.router.navigate(['/userPage']);//navigation to other page
   }
 
+  login()
+  {
+    this.router.navigate([`/login`]);
+  }
+
   ngOnInit() 
   {
    
