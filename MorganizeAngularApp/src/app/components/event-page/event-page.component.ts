@@ -68,14 +68,22 @@ export class EventPageComponent implements OnInit {
    //joinEvents() allows a current user to register for an event
    joinEvents(){
      this.event.id;
-     this.eventService.registerForEvent(this.currentUser, this.event.id);
+     this.eventService.registerForEvent(this.currentUser, this.event.id).then((response)=>{
+     this.event = MorganizeEvent.createEvent(response);
+     this.router.navigate([`/events/${this.event.id}`])
+     });
+
     //console.log(this.currentUser);
    }
 
    leaveEvent()
    {
      //this.eventService.leaveEvent(this.currentUser, this.event.id);
-   }
+     this.event.id;
+     this.eventService.leaveAnEvent(this.currentUser, this.event.id);
+     this.router.navigate([`/events/${this.event.id}`]);
+     }
+   
 
   ngOnInit() {
     this.transfer.currentFetch.subscribe(current => this.currentUser = current); 

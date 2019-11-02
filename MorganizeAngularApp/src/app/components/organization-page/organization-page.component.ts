@@ -48,7 +48,7 @@ export class OrganizationPageComponent implements OnInit {
      
   }
    
-
+  
   ngOnInit() {
     
     this.transfer.currentFetch.subscribe(current => this.currentUser = current);

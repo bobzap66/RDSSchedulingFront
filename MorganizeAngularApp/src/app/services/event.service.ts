@@ -65,6 +65,8 @@ export class EventService {
   //   return event;
   // }
 
+ 
+
   // /users/{u_id}/events/{e_id} PUT
   updateAdministeredEvent(u_id, event:MorganizeEvent):Promise<MorganizeEvent>{
     return this.http.put<MorganizeEvent>(`${this.local_url}/users/${u_id}/events/${event.id}`, event, {headers: this.headers}).toPromise();
@@ -75,6 +77,7 @@ export class EventService {
     return this.http.delete<boolean>(`${this.local_url}/users/${u_id}/events/${e_id}`).toPromise();
   }
 
+
   // /events GET
   searchEvents(tag:string):Promise<MorganizeEvent[]>{
     return this.http.get<MorganizeEvent[]>(`${this.local_url}/events?tag=${tag}`).toPromise();
@@ -83,6 +86,11 @@ export class EventService {
   // /events/{e_id} GET
   getEvent(e_id:number):Promise<MorganizeEvent>{
     return this.http.get<MorganizeEvent>(`${this.local_url}/events/${e_id}`).toPromise();
+  }
+
+   //leaveAnEvent()
+   leaveAnEvent(user:Account, e_id:number):Promise<boolean>{
+    return this.http.delete<boolean>(`${this.local_url}/events/${e_id}/appointments/${user.id}`).toPromise();
   }
 
   // /events/{e_id} POST
