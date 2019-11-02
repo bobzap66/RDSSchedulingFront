@@ -26,10 +26,10 @@ export class EventPageComponent implements OnInit {
 
   constructor(private transfer:DataServiceService, private route:ActivatedRoute, private router:Router, private eventService:EventService) {
     
-    
+
+    this.transfer.currentFetch.subscribe(current => this.currentUser = current); 
     this.route.paramMap.subscribe(
       (paramMap:ParamMap) => { 
-        //console.log(paramMap.get("e_id"));
         this.eventService.getEvent(parseInt(paramMap.get('e_id')))
         .then((response) => {
           this.event = MorganizeEvent.createEvent(response);
@@ -46,7 +46,7 @@ export class EventPageComponent implements OnInit {
               this.peopleAttending.push(appointment.account);
               this.ammountAttending++;
             }
-            if(this.currentUser.id === appointment.account.id)
+            if(appointment.attending === true)
             {
                 this.currentlyAttending = true;
                 this.ammountAttending++;
@@ -57,6 +57,8 @@ export class EventPageComponent implements OnInit {
         });
         
       });
+    
+    
 
     
       this.router.routeReuseStrategy.shouldReuseRoute = function () {
@@ -89,8 +91,10 @@ export class EventPageComponent implements OnInit {
    {
      //this.eventService.leaveEvent(this.currentUser, this.event.id);
      this.event.id;
-     this.eventService.leaveAnEvent(this.currentUser, this.event.id);
-     this.router.navigate([`/events/${this.event.id}`]);
+     this.eventService.leaveAnEvent(this.currentUser, this.event.id).then((response) =>{
+       this.router.navigate([`/events/${this.event.id}`]);
+     });
+     
      }
    
 
