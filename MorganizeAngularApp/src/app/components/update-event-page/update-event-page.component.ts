@@ -15,7 +15,7 @@ export class UpdateEventPageComponent implements OnInit {
   constructor(private route:ActivatedRoute, private router:Router, private eventService:EventService) {
     this.route.paramMap.subscribe(
       (paramMap:ParamMap) => { 
-        console.log(paramMap.get("u_id"));
+        //console.log(paramMap.get("u_id"));
         this.eventService.getEvent(parseInt(paramMap.get('e_id')))
         .then((response) => {
           this.event = MorganizeEvent.createEvent(response);

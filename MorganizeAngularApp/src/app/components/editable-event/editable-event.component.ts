@@ -17,7 +17,7 @@ export class EditableEventComponent implements OnInit {
   @Input() event:MorganizeEvent;
   @Input() create:boolean;
   currentUser:Account;
-  tagString:string;
+  tagString:string = "";
   u_id:number;
   organizationId:number;
   callback:(id:number, ev:MorganizeEvent)=>Promise<MorganizeEvent>;
@@ -29,7 +29,6 @@ export class EditableEventComponent implements OnInit {
   action:number;
 
 createEvent() {
-  
   this.createTagObjectsFromString()
   this.event.startdate = this.toJSDate(this.event.startdate).getTime();
   this.event.enddate = this.toJSDate(this.event.enddate).getTime();
@@ -88,17 +87,15 @@ createTagObjectsFromString() {
     }
     let tagNames:string[] = this.tagString.split(",");
     for(let i = 0; i < tagNames.length; i++) {
-      this.event.tags = [];
       let temp:Tag = new Tag();
       temp.tag = tagNames[i].trim();
+      console.log(temp);
       this.event.tags.push(temp);
-      //console.log(this.event.tags);
     };
   }
   constructor(private es:EventService, private route: ActivatedRoute, private router:Router, private transfer:DataServiceService) 
   {
-  
-
+   
 
     
  
@@ -107,7 +104,14 @@ createTagObjectsFromString() {
 
   }
 
-  ngOnInit() {
+  ngOnInit() 
+  {
+    
+
+
+
+
+
     this.transfer.currentFetch.subscribe(current => this.currentUser = current);
     if(this.router.url.match(/\/users\/\d+\/events/i)){
       if(this.create)
@@ -131,7 +135,20 @@ createTagObjectsFromString() {
     {
       console.log("invalid route");
     }
+
+
+    this.tagString = "";
+    if(this.event !== undefined)
+    {
+      console.log(this.event.tags);
+      this.tagString = this.event.tags.map((tag) => tag.tag).join(", ");
+  
+    }
+
+
+
   }
+  
 
 }
 
