@@ -94,6 +94,10 @@ export class OrganizationService {
     return this.http.get<Membership[]>(`${this.local_url}organizations/${o_id}/members`).toPromise();
   }
 
+  leaveOrganization(o_id:number, u_id:number):void{
+    this.http.delete(`${this.local_url}organizations/${o_id}/members/${u_id}`)
+  }
+
 
 }
 
