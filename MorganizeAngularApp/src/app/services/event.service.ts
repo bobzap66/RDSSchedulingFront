@@ -113,6 +113,18 @@ export class EventService {
     return this.http.get<Appointment[]>(`${this.local_url}/events/${e_id}/appointments`).toPromise();
   }
 
+  filterEventsByTime(events:MorganizeEvent[]):MorganizeEvent[]{
+    return events.filter((ev)=>ev.startdate>Date.now())
+  }
+
+  filterAppointmentsByTime(appointments:Appointment[]):Appointment[]{
+    console.log(appointments);
+    if(!appointments){
+      return [];
+    }
+    return appointments.filter((appt)=>appt.event.startdate>Date.now())
+  }
+
   
 
 

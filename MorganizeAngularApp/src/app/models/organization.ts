@@ -16,6 +16,8 @@ export class Organization
 
     constructor(){
       this.tags = [];
+      this.members = [];
+      this.events = [];
     };
 
     static createOrganization(or:Organization){
