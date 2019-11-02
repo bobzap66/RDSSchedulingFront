@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Organization } from 'src/app/models/organization';
-import { ActivatedRoute, Router, ParamMap } from '@angular/router';
+import { ActivatedRoute, Router, ParamMap, NavigationEnd } from '@angular/router';
 import { OrganizationService } from 'src/app/services/organization.service';
 import { switchMap } from 'rxjs/operators';
 import { MorganizeEvent } from 'src/app/models/morganizeEvent';
@@ -17,6 +17,7 @@ export class OrganizationPageComponent implements OnInit {
 
   organization:Organization;
   currentUser:Account; 
+  mySubscription:any;
 
   constructor(private transfer:DataServiceService, private eventService:EventService, private route:ActivatedRoute, private router:Router, private orgService:OrganizationService) {
 
@@ -41,6 +42,17 @@ export class OrganizationPageComponent implements OnInit {
       
       }
     );
+
+
+    this.router.routeReuseStrategy.shouldReuseRoute = function () {
+      return false;
+    };
+    this.mySubscription = this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        // Trick the Router into believing it's last link wasn't previously loaded
+        this.router.navigated = false;
+      }
+    });
    }
   
    //joinOrganization
