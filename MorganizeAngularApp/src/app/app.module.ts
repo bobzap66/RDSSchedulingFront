@@ -27,6 +27,7 @@ import { CreateEventPageComponent } from './components/create-event-page/create-
 import { UpdateOrganizationPageComponent } from './components/update-organization-page/update-organization-page.component';
 import { CreateOrganizationPageComponent } from './components/create-organization-page/create-organization-page.component';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
+import { MemberListComponent } from './components/member-list/member-list.component';
 
 
 @NgModule({
@@ -53,7 +54,8 @@ import { NavBarComponent } from './components/nav-bar/nav-bar.component';
     CreateEventPageComponent,
     UpdateOrganizationPageComponent,
     CreateOrganizationPageComponent,
-    NavBarComponent
+    NavBarComponent,
+    MemberListComponent
   ],
   imports: [
     BrowserModule,

@@ -1,16 +1,33 @@
+<style>
+    .event-list-container{
+        
+        border-radius: 4px;
+    }
+    ul{
+        list-style-type: none;
+        margin:0;
+        padding:0;
+    }
+    .list-item-inline-block{
+        display:inline-block;
+    }
+    .event-list-header{
+        text-align:center;
+        width:100%;
+        margin: 15px 0px;
+        font-size: 32px;
+        font-weight:450;
 
-       <h2>Events</h2>
-         <table>
-         
-
-
-                 <tr>
-                     <app-event-list-item *ngFor="let event of events" [event]="event"></app-event-list-item>
-
-                     
-                </tr>
-             
-         </table>
+    }
+</style>
+<div class="event-list-container">
+        <h1 class="event-list-header">Upcoming events</h1>
+    <ul>
+        <li *ngFor="let event of events">
+            <app-event-list-item class="list-item-inline-block" [event]="event"></app-event-list-item>
+        </li>
+    </ul>
+</div>
  
     
 

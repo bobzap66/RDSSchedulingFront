@@ -32,7 +32,12 @@ export class OrganizationPageComponent implements OnInit {
           .then((response) =>{
             this.organization.events = response.map((ev) => MorganizeEvent.createEvent(ev))
           })
-        );
+        ).then(()=>{
+          this.orgService.getOrganizationMembers(parseInt(paramMap.get('o_id')))
+          .then((response)=> {
+            this.organization.members = response;
+          })
+        });
       
       }
     );

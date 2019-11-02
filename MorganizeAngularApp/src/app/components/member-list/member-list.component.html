@@ -1,0 +1,32 @@
+<style>
+    .member-list-container{
+        text-align:center;
+        width: 200px;
+    }
+    ul{
+        list-style-type: none;
+        margin:0;
+        padding:0;
+    }
+    .member-list{
+        padding:0px 10px;
+        background-color: #EEEEBB;
+    }
+    li{
+        padding: 5px 0px;
+        padding-left: 15px;
+    }
+    li:not(:first-child){
+        border-top: 1px solid rgba(0,0,0,0.2);
+    }
+</style>
+
+
+<div class="member-list-container">
+    <h2>Members</h2>
+    <ul class="member-list">
+        <li *ngFor="let member of members">
+            <app-user-list-item [user]="member.account"></app-user-list-item>
+        </li>
+    </ul>
+</div>
