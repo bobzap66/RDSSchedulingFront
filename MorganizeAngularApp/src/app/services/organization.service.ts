@@ -77,7 +77,7 @@ export class OrganizationService {
   }
 
   updateOrganizationAsAdmin(u_id:number, organization:Organization):Promise<Organization>{
-    return this.http.put<Organization>(`${this.remote_url}/users/${u_id}/organizations/${organization.id}`,
+    return this.http.put<Organization>(`${this.local_url}/users/${u_id}/organizations/${organization.id}`,
         organization, {headers:this.headers}).toPromise();
   }
 

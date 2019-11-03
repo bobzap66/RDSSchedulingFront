@@ -9,10 +9,12 @@ import { Organization } from 'src/app/models/organization';
 })
 export class CreateOrganizationPageComponent implements OnInit {
 
-  @Input() organization:Organization;
+  organization:Organization;
+  create:boolean;
 
   constructor() 
   { 
+    this.create = true;
     this.organization = new Organization();
   }
 

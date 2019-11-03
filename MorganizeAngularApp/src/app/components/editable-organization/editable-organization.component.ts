@@ -14,6 +14,7 @@ import { Router } from '@angular/router';
 export class EditableOrganizationComponent implements OnInit {
 
   @Input() organization:Organization;
+  @Input() create:boolean;
   tagString:string;
   currentUser:Account;
 
@@ -21,9 +22,16 @@ export class EditableOrganizationComponent implements OnInit {
 
   createOrganization() {
     this.createTagObjectsFromString()
-    this.organizationService.createOrganization(this.currentUser.id, this.organization).then((response) =>{
-      this.router.navigate([`/users/${this.currentUser.id}`]);
-    });
+    if(this.create){
+      this.organizationService.createOrganization(this.currentUser.id, this.organization).then((response) =>{
+        this.router.navigate([`/users/${this.currentUser.id}`]);
+      });
+    }else{
+      this.organizationService.updateOrganizationAsAdmin(this.currentUser.id, this.organization).then((response) =>{
+        this.router.navigate([`/organizations/${this.organization.id}`]);
+      });
+    }
+    
   }
 
   createTagObjectsFromString() {
@@ -42,6 +50,15 @@ export class EditableOrganizationComponent implements OnInit {
 
   ngOnInit() {
     this.transfer.currentFetch.subscribe(current => this.currentUser = current);
+
+    this.tagString = "";
+    if(this.organization !== undefined)
+    {
+      console.log(this.organization)
+      console.log(this.organization.tags);
+      this.tagString = this.organization.tags.map((tag) => tag.tag).join(", ");
+  
+    }
   }
 
 }
