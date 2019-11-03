@@ -42,6 +42,12 @@ export class LoginComponent implements OnInit {
    ;//navigation to other page,,,,need to add this.currentUser.id to the route
   };
 
+  loginOnEnterKey(event:KeyboardEvent){
+    if(event.which === 13){
+      this.onSubmitLogin();
+    }
+  }
+
   createUserPage()
   {
     this.router.navigate(['/createUser']);

@@ -36,8 +36,10 @@
     padding-left: 35px;
     padding-top:15px;
   }
+  .grow { transition: all .15s ease-in-out; }
+  .grow:hover { transform: scale(1.02); }
 </style>
-<div class="event-list-item" *ngIf="event"> 
+<div class="event-list-item grow" *ngIf="event"> 
   <div class="flex-column">
     <div class="flex-header"><div class="event-title flex-text-field">{{event.name}}</div></div>
     <div class="flex-row">

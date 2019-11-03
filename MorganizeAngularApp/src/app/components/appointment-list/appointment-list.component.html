@@ -25,7 +25,7 @@
 <div class="appt-list-container">
     <h1 class="appt-list-header">Your upcoming events</h1>
 <ul>
-    <li *ngFor="let appointment of eventService.filterAppointmentsByTime(appointments)">
+    <li *ngFor="let appointment of appointments">
         <app-event-list-item class="list-item-inline-block" [event]="appointment.event"></app-event-list-item><button (click)="editEvent(appointment)" *ngIf="appointment.admin">Edit event</button>
     </li>
 </ul>

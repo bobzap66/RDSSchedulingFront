@@ -51,8 +51,10 @@
     .flex-align-end{
         align-self: flex-end;
     }
+    .grow { transition: all .15s ease-in-out; }
+    .grow:hover { transform: scale(1.02); }
 </style>
-<div class="organization-list-item" *ngIf="organization"> 
+<div class="organization-list-item grow" *ngIf="organization"> 
 <div class="flex-column">
     <div class="flex-header"><div class="organization-title flex-text-field">{{organization.name}}</div></div>
     <div class="flex-column">
