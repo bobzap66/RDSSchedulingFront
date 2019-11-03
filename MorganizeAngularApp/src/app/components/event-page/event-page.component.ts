@@ -41,6 +41,7 @@ export class EventPageComponent implements OnInit {
           console.log(this.allAppointments);
 
           this.allAppointments.forEach(appointment=>{
+
             if(appointment.attending === true)
             {
               if(appointment.account.id != this.currentUser.id){
