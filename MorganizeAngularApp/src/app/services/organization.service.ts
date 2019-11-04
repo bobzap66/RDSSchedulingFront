@@ -11,12 +11,14 @@ import { Subject } from 'rxjs';
 export class OrganizationService {
   remote_url:string = "";
   local_url:string = "";
+  current_url:string;
   static user = new Subject<Account>();
 
   constructor(private http:HttpClient) 
   {
-    this.remote_url = "http://ec2-52-202-225-1.compute-1.amazonaws.com:9999/";
+    this.remote_url = "http://ec2-18-222-175-89.us-east-2.compute.amazonaws.com:9999/";
     this.local_url = "http://localhost:9999/";
+    this.current_url = this.remote_url;
    }
 
   /*
@@ -43,20 +45,20 @@ export class OrganizationService {
   getMemberships(account_id:number):Promise<Membership[]>
   {
     let uri:string = `users/${account_id}/organizations`
-      return this.http.get<Membership[]>(`${this.local_url + uri}`).toPromise();
+      return this.http.get<Membership[]>(`${this.current_url + uri}`).toPromise();
   }
  
   searchOrganizations(tag:string):Promise<Organization[]>{
-    return this.http.get<Organization[]>(`${this.local_url}/organizations?tag=${tag}`).toPromise();
+    return this.http.get<Organization[]>(`${this.current_url}/organizations?tag=${tag}`).toPromise();
   }
 
   registerForOrganization(o_id:number, user:Account):Promise<Organization> {
-    return this.http.post<Organization>(`${this.local_url}/organizations/${o_id}`, 
+    return this.http.post<Organization>(`${this.current_url}/organizations/${o_id}`, 
         user, {headers:this.headers}).toPromise();
   }
 
   getOrganization(o_id:number):Promise<Organization>{
-    return this.http.get<Organization>(`${this.local_url}/organizations/${o_id}`).toPromise();
+    return this.http.get<Organization>(`${this.current_url}/organizations/${o_id}`).toPromise();
   }
 
   promoteToAdminOfOrganization(u_id:number, organization:Organization, promoted:number):Promise<Organization>{
@@ -67,17 +69,17 @@ export class OrganizationService {
       }
     });
 
-    return this.http.post<Organization>(`${this.local_url}/users/${u_id}/organizations/${organization.id}`,
+    return this.http.post<Organization>(`${this.current_url}/users/${u_id}/organizations/${organization.id}`,
         account, {headers:this.headers}).toPromise();
   }
 
   deleteOrganizationAsAdmin(u_id:number, o_id:number):Promise<any>{
-    return this.http.delete<Organization>(`${this.local_url}/users/${u_id}/organizations/${o_id}`, 
+    return this.http.delete<Organization>(`${this.current_url}/users/${u_id}/organizations/${o_id}`, 
     {headers:this.headers}).toPromise();
   }
 
   updateOrganizationAsAdmin(u_id:number, organization:Organization):Promise<Organization>{
-    return this.http.put<Organization>(`${this.local_url}/users/${u_id}/organizations/${organization.id}`,
+    return this.http.put<Organization>(`${this.current_url}/users/${u_id}/organizations/${organization.id}`,
         organization, {headers:this.headers}).toPromise();
   }
 
@@ -87,15 +89,15 @@ export class OrganizationService {
   }
 
   createOrganization(u_id:number, organization:Organization):Promise<Organization> {
-    return this.http.post<Organization>(`${this.local_url}users/${u_id}/organizations`, organization, {headers:this.headers}).toPromise();
+    return this.http.post<Organization>(`${this.current_url}users/${u_id}/organizations`, organization, {headers:this.headers}).toPromise();
   }
 
   getOrganizationMembers(o_id:number):Promise<Membership[]>{
-    return this.http.get<Membership[]>(`${this.local_url}organizations/${o_id}/members`).toPromise();
+    return this.http.get<Membership[]>(`${this.current_url}organizations/${o_id}/members`).toPromise();
   }
 
   leaveOrganization(o_id:number, u_id:number):Promise<any>{
-    return this.http.delete(`${this.local_url}organizations/${o_id}/members/${u_id}`).toPromise();
+    return this.http.delete(`${this.current_url}organizations/${o_id}/members/${u_id}`).toPromise();
   }
 
 
