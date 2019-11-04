@@ -45,10 +45,10 @@ export class EventPageComponent implements OnInit {
             if(appointment.attending === true)
             {
               if(appointment.account.id != this.currentUser.id){
-                this.peopleAttending.push(appointment.account);
-              }else{
                 this.currentlyAttending = true;
+                
               }
+              this.peopleAttending.push(appointment.account);
               this.ammountAttending++;
             }
         });

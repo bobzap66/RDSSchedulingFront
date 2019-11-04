@@ -36,39 +36,71 @@
         }
         .flex-header{
           display:flex;
-          padding-left: 35px;
-          padding-top:15px;
+          justify-content:center;
+          padding-top: 15px;
         }
 </style>
 
 <app-nav-bar></app-nav-bar>
 
-<div class="event-list-item">
-<div  *ngIf="event">
-    <div  id="left-column">
-        <div class="flex-header event-title"><h1>{{event.name}}</h1></div>
-        <div *ngIf="currentlyAttending === true"><h6>*your currently signed up for this event</h6></div>
-        <div>
-        <div><p>{{event.description}}</p></div>
-       <!-- <app-user-list [users]="event.attendees"></app-user-list>-->
-    
-    <div>
-        <div class="flex-row">
-            <p>Starting on: {{event.startdate | datetime}} - Ending on: {{event.enddate | datetime}}</p>
+
+<style>
+    .event-page{
+        text-align: center;
+        margin: 0 auto;
+        margin-top:30px;
+        padding: 5px;
+        background-color: #EEEEBB;
+        display:flex;
+        width: 80%;
+        font-weight:600px;
+        flex-direction: column;
+    }
+    .event-body{
+        display:flex;
+    }
+    .event-page-column{
+        display:flex;
+        flex-direction: column;
+        width: 50%;
+    }
+    .flex-center{
+        display:flex;
+        justify-content: center;
+        text-align:center;
+    }
+    .event-title{
+        font-size: 60px;
+    }
+    p{
+        font-size: 20px;
+    }
+</style>
+
+<div class="event-page" *ngIf="event">
+    <div class="flex-header">
+        <h1 class="event-title">{{event.name}}</h1>
+    </div>
+    <div class="event-body">
+        <div class="event-page-column">
+            <div><p>{{event.description}}</p></div>
+            <div><p>{{event.location}}</p></div>
+            <p>Starting on: {{event.startdate | datetime}}</p>
+            <p>Ending on: {{event.enddate | datetime}}</p>
+
         </div>
-        <div><p>{{event.location}}</p></div>
-        <div><p>Slots left: {{slotsOpen}}</p></div>
-        <!-- <div>{{eventAppointment.attending.length}}</div> -->
-    </div></div>
-    <div>
-        <h1>Who is Attending</h1>
-        <p *ngFor="let account of peopleAttending">{{account.name}}</p>
+        <div class="event-page-column flex-center">
+                <div class="flex-center flex-column">
+                    <h2>Who is Attending</h2>
+                    <app-user-list [users]="peopleAttending"></app-user-list>
+                </div>
+                <div *ngIf="currentlyAttending === false">
+                    <button (click)="joinEvents()" id="join-event-btn">Join Event</button> 
+                </div>
+                <div *ngIf="currentlyAttending === true">
+                    <button (click)="leaveEvent()" id="leave-event=btn">Leave Event</button>
+                </div>
+        </div>
     </div>
-    <div *ngIf="currentlyAttending === false">
-        <button (click)="joinEvents()" id="join-event-btn">Join Event</button> 
-    </div>
-    <div *ngIf="currentlyAttending === true">
-        <button (click)="leaveEvent()" id="leave-event=btn">Leave Event</button>
-    </div>
-</div>
+
 </div>
