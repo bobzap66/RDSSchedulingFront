@@ -1,6 +1,48 @@
+<style>
+    .user-list-container{
+        text-align:center;
+        width: 100%;
+    }
+    ul{
+        list-style-type: none;
+        margin:0;
+        padding:0;
+        text-align:center;
+        display:flex;
+        justify-content: center;
+        flex-direction: column;
+        width:100%;
+    }
+    .user-list{
+        padding:0px 10px;
+        background-color: #EEEEBB;
+    }
+    li{
+        padding: 5px 0px;
+        padding-left: 15px;
+        width:50%;
+    }
+    li:not(:first-child){
+        border-top: 1px solid rgba(0,0,0,0.2);
+    }
+    .flex-center{
+        display:flex;
+        flex-direction:column;
+        justify-content:center;
+        align-items:center;
+    }
+    .user-username{
+        font-size:18px;
+    }
+</style>
 
-<div>
-    <ul>
-        <app-user-list-item *ngFor="let user of users" [user]="user"></app-user-list-item>
+
+<div class="user-list-container">
+    <ul class="user-list">
+        <div class="flex-center">
+        <li *ngFor="let user of users">
+            <app-user-list-item [user]="user"></app-user-list-item>
+        </li>
+        </div>
     </ul>
 </div>

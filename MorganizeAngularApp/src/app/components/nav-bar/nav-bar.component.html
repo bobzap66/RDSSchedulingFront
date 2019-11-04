@@ -1,16 +1,29 @@
 
+<style>
+        .nav-btn{
+                background-color: #DDDDDD;
+                color: #135;
+                border-color:#135;
+        }
+        .nav-btn:hover{
+                background-color:rgba(16,48,80,0);
+                color:white;
+                border-color:white;
+        }
+</style>
+
 <div class="container"></div>		
 		
 
 <div id ="navbar">
-        <nav class="navbar navbar-dark bg-primary">
+        <nav class="navbar navbar-dark bg-dark">
                 <!-- Navbar content -->
                 <div class="row-fluid">
                 <form class="form-inline" >
-                        <button (click)="logout()" class="nav-item btn btn-warning btn-outline-success my-2 my-sm-0">Logout</button>
-                        <button (click)="routeToCreateEvent()" class="nav-item btn btn-warning btn-outline-success my-2 my-sm-0">Create Event</button>
-                        <button (click)="home()" class="nav-item btn btn-warning btn-outline-success my-2 my-sm-0">Home</button>
-                        <button (click)="routeToCreateOrganization()" class="nav-item btn btn-warning btn-outline-success my-2 my-sm-0">Create Organization</button>
+                        <button (click)="logout()" class="nav-item btn btn-warning btn-outline-success my-2 my-sm-0 nav-btn">Logout</button>
+                        <button (click)="routeToCreateEvent()" class="nav-item btn btn-warning btn-outline-success my-2 my-sm-0 nav-btn">Create Event</button>
+                        <button (click)="home()" class="nav-item btn btn-warning btn-outline-success my-2 my-sm-0 nav-btn">Home</button>
+                        <button (click)="routeToCreateOrganization()" class="nav-item btn btn-warning btn-outline-success my-2 my-sm-0 nav-btn">Create Organization</button>
                        
                 </form>
                 </div>
@@ -21,7 +34,7 @@
                             <option value="Event">Event</option>
                     </select>
                     <input ref-input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                    <button (click)="searchQuery(type.value, input.value)" class="btn btn-warning btn-outline-success my-2 my-sm-0" type="button">Search</button>
+                    <button (click)="searchQuery(type.value, input.value)" class="btn btn-warning btn-outline-success my-2 my-sm-0 nav-btn" type="button">Search</button>
                 </form>
                 </div>
         </nav>
