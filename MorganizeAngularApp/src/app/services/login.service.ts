@@ -19,7 +19,7 @@ export class LoginService
   
   constructor(private http:HttpClient) 
   {
-    this.login_url = "http://ec2-52-202-225-1.compute-1.amazonaws.com:9999/login";
+    this.login_url = "http://ec2-18-222-175-89.us-east-2.compute.amazonaws.com:9999/login";
     this.local_url = "http://localhost:9999/login";
    }
 
@@ -28,7 +28,7 @@ export class LoginService
     sendLoginInformation(lc:Account):Promise<Account>
     {
 
-         return this.http.post<Account>(this.local_url, lc, {headers:this.headers}).toPromise();
+         return this.http.post<Account>(this.login_url, lc, {headers:this.headers}).toPromise();
 ;       
          
              

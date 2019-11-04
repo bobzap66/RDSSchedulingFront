@@ -13,13 +13,15 @@ export class EventService {
 
   login_url = "";
   local_url = "";
+  current_url:string;
 
   headers:HttpHeaders = new HttpHeaders({'Content-Type':'application/json' });
 
   constructor(private http:HttpClient) 
   {
-    this.login_url = "http://ec2-52-202-225-1.compute-1.amazonaws.com:9999";
+    this.login_url = "http://ec2-18-222-175-89.us-east-2.compute.amazonaws.com:9999";
     this.local_url = "http://localhost:9999";
+    this.current_url = this.login_url;
   }
 
   /*
@@ -45,14 +47,14 @@ export class EventService {
   // /users/{u_id}/events GET
 
   getUserAppointments(u_id:number):Promise<Appointment[]>{
-    return this.http.get<Appointment[]>(`${this.local_url}/users/${u_id}/events`).toPromise();
+    return this.http.get<Appointment[]>(`${this.current_url}/users/${u_id}/events`).toPromise();
 
   }
 
   
   // /users/{u_id}/events POST
   createUserEvent(u_id:number, ev:MorganizeEvent):Promise<MorganizeEvent>{
-    return this.http.post<MorganizeEvent>(`${this.local_url}/users/${u_id}/events`, ev, {headers: this.headers}).toPromise();
+    return this.http.post<MorganizeEvent>(`${this.current_url}/users/${u_id}/events`, ev, {headers: this.headers}).toPromise();
   };
 
 
@@ -69,12 +71,12 @@ export class EventService {
 
   // /users/{u_id}/events/{e_id} PUT
   updateAdministeredEvent(u_id, event:MorganizeEvent):Promise<MorganizeEvent>{
-    return this.http.put<MorganizeEvent>(`${this.local_url}/users/${u_id}/events/${event.id}`, event, {headers: this.headers}).toPromise();
+    return this.http.put<MorganizeEvent>(`${this.current_url}/users/${u_id}/events/${event.id}`, event, {headers: this.headers}).toPromise();
   }
 
   // /users/{u_id}/events/{e_id} DELETE
   deleteAdministeredEvent(u_id:number, e_id:number):Promise<boolean>{
-    return this.http.delete<boolean>(`${this.local_url}/users/${u_id}/events/${e_id}`).toPromise();
+    return this.http.delete<boolean>(`${this.current_url}/users/${u_id}/events/${e_id}`).toPromise();
   }
 
 
@@ -86,39 +88,39 @@ export class EventService {
     {
         include += `?tag=${tag}`;
     }
-    return this.http.get<MorganizeEvent[]>(`${this.local_url}/events${include}`).toPromise();
+    return this.http.get<MorganizeEvent[]>(`${this.current_url}/events${include}`).toPromise();
   }
 
   // /events/{e_id} GET
   getEvent(e_id:number):Promise<MorganizeEvent>{
-    return this.http.get<MorganizeEvent>(`${this.local_url}/events/${e_id}`).toPromise();
+    return this.http.get<MorganizeEvent>(`${this.current_url}/events/${e_id}`).toPromise();
   }
 
    //leaveAnEvent()
    leaveAnEvent(user:Account, e_id:number):Promise<boolean>{
-    return this.http.delete<boolean>(`${this.local_url}/events/${e_id}/appointments/${user.id}`).toPromise();
+    return this.http.delete<boolean>(`${this.current_url}/events/${e_id}/appointments/${user.id}`).toPromise();
   }
 
   // /events/{e_id} POST
   registerForEvent(user:Account, e_id:number):Promise<MorganizeEvent>{
-    return this.http.post<MorganizeEvent>(`${this.local_url}/events/${e_id}`, user, {headers: this.headers}).toPromise();
+    return this.http.post<MorganizeEvent>(`${this.current_url}/events/${e_id}`, user, {headers: this.headers}).toPromise();
   }
   
   // /organization/{o_id}/events GET
   getOrganizationEvents(o_id:number):Promise<MorganizeEvent[]>{
-    return this.http.get<MorganizeEvent[]>(`${this.local_url}/organizations/${o_id}/events`).toPromise();
+    return this.http.get<MorganizeEvent[]>(`${this.current_url}/organizations/${o_id}/events`).toPromise();
     
   }
 
   // /organzations/{o_id}/events POST
   createOrganizationEvent(o_id:number, event:MorganizeEvent):Promise<MorganizeEvent>{
-    return this.http.post<MorganizeEvent>(`${this.local_url}/organizations/${o_id}`, event, {headers: this.headers}).toPromise();
+    return this.http.post<MorganizeEvent>(`${this.current_url}/organizations/${o_id}`, event, {headers: this.headers}).toPromise();
   
   }
 
   getAppointmentByEvent(e_id:number):Promise<Appointment[]>
   {
-    return this.http.get<Appointment[]>(`${this.local_url}/events/${e_id}/appointments`).toPromise();
+    return this.http.get<Appointment[]>(`${this.current_url}/events/${e_id}/appointments`).toPromise();
   }
 
   filterEventsByTime(events:MorganizeEvent[]):MorganizeEvent[]{

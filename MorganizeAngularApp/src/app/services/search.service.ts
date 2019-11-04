@@ -15,12 +15,14 @@ export class SearchService
   local_url:string = "";
   events:MorganizeEvent[];
   orgs:Organization[];
+  current_url:string;
  
 
   constructor(private http:HttpClient, private transferSearch:DataServiceService) 
   {
-    this.login_url = "http://ec2-52-202-225-1.compute-1.amazonaws.com:9999";
+    this.login_url = "http://ec2-18-222-175-89.us-east-2.compute.amazonaws.com:9999";
     this.local_url = "http://localhost:9999";
+    this.current_url = this.login_url;
    
   }
 
@@ -34,7 +36,7 @@ export class SearchService
         include += `?tag=${input}`;
     }
     
-    this.http.get<any[]>(`${this.local_url}/events${include}`).subscribe((response) => 
+    this.http.get<any[]>(`${this.current_url}/events${include}`).subscribe((response) => 
     {
       this.events = response;
       this.transferSearch.changeSearchable(this.events);
@@ -49,7 +51,7 @@ export class SearchService
         include += `?tag=${input}`;
     }
     
-    this.http.get<any[]>(`${this.local_url}/organizations${include}`).subscribe((response) => 
+    this.http.get<any[]>(`${this.current_url}/organizations${include}`).subscribe((response) => 
     {
       this.orgs = response;
       this.transferSearch.listOfOrganizations(this.orgs);
