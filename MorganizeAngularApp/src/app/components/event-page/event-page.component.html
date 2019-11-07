@@ -79,14 +79,14 @@
 
 <div class="event-page" *ngIf="event">
     <div class="flex-header">
-        <h1 class="event-title">{{event.name}}</h1>
+        <h1 id="event-title" class="event-title">{{event.name}}</h1>
     </div>
     <div class="event-body">
         <div class="event-page-column">
-            <div><p>{{event.description}}</p></div>
-            <div><p>{{event.location}}</p></div>
-            <p>Starting on: {{event.startdate | datetime}}</p>
-            <p>Ending on: {{event.enddate | datetime}}</p>
+            <div><p id="event-description">{{event.description}}</p></div>
+            <div><p id="event-location">{{event.location}}</p></div>
+            <p id="event-startdate">Starting on: {{event.startdate | datetime}}</p>
+            <p id="event-enddate">Ending on: {{event.enddate | datetime}}</p>
 
         </div>
         <div class="event-page-column flex-center">

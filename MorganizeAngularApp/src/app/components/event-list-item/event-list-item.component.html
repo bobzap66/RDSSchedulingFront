@@ -39,18 +39,18 @@
   .grow { transition: all .15s ease-in-out; }
   .grow:hover { transform: scale(1.02); }
 </style>
-<div class="event-list-item grow" *ngIf="event"> 
+<div class="event-list-item grow" [name]="event.name" *ngIf="event"> 
   <div class="flex-column">
-    <div class="flex-header"><div class="event-title flex-text-field">{{event.name}}</div></div>
+    <div class="flex-header"><div [name]="event.name + ' title'" id="event-list-item-title" class="event-title flex-text-field">{{event.name}}</div></div>
     <div class="flex-row">
       <div class="event-list-item-column">
-        <div class="event-description flex-textarea-field">{{event.description}}</div>
+        <div id="event-list-item-description" [name]="event.name + ' description'" class="event-description flex-textarea-field">{{event.description}}</div>
       </div>
         <div class="event-list-item-column">
-          <div class="flex-text-field">Location: {{event.location}}</div>
-          <div class="event-start-time flex-text-field">Start: {{event.startdate | datetime }}</div>
-          <div class="event-end-time flex-text-field">End: {{event.enddate | datetime}}</div>
-          <button (click)="handleClick()">Go to event page</button>
+          <div id="event-list-item-location" [name]="event.name + ' location'" class="flex-text-field">Location: {{event.location}}</div>
+          <div id="event-list-item-startdate" [name]="event.name + ' startdate'" class="event-start-time flex-text-field">Start: {{event.startdate | datetime }}</div>
+          <div id="event-list-item-enddate" [name]="event.name + ' enddate'" class="event-end-time flex-text-field">End: {{event.enddate | datetime}}</div>
+          <button id="event-list-item-button" [name]="event.name + ' button'" (click)="handleClick()">Go to event page</button>
         </div>  
     </div>
   </div>
