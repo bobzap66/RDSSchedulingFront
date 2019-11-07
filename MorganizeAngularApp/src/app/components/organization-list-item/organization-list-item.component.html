@@ -54,15 +54,15 @@
     .grow { transition: all .15s ease-in-out; }
     .grow:hover { transform: scale(1.02); }
 </style>
-<div class="organization-list-item grow" *ngIf="organization" [name]="organization.name"> 
+<div class="organization-list-item grow" *ngIf="organization" [id]="organization.name"> 
 <div class="flex-column">
-    <div class="flex-header"><div id="organization-list-organization-title" [name]="organization.name + 'title'" class="organization-title flex-text-field">{{organization.name}}</div></div>
+    <div class="flex-header"><div id="organization-list-organization-title" [id]="organization.name + 'title'" class="organization-title flex-text-field">{{organization.name}}</div></div>
     <div class="flex-column">
     <div class="organization-list-item-row">
-        <div id="organization-list-organization-description" [name]="organization.name + 'description'" class="organization-description flex-textarea-field">{{organization.description}}</div>
+        <div id="organization-list-organization-description" [id]="organization.name + 'description'" class="organization-description flex-textarea-field">{{organization.description}}</div>
     </div>
         <div class="organization-list-item-row flex-align-end">
-        <button id="organization-list-item-btn" [name]="organization.name + 'button'" class="organization-btn" (click)="handleClick()">Go to organization page</button>
+        <button id="organization-list-item-btn" [id]="organization.name + 'button'" class="organization-btn" (click)="handleClick()">Go to organization page</button>
         </div>  
     </div>
 </div>
