@@ -3,21 +3,21 @@
     <form #f="ngForm">
         <p>
             <label>Organization Name:</label>
-            <input type="text" name="name" 
+            <input type="text" id="organization-name" name="name" 
                 [(ngModel)]="organization.name" required>
         </p>
         <p>
             <label>Description:</label>
-            <input type="text" name="description" 
+            <input type="text" id="organization-description" name="description" 
                 [(ngModel)]="organization.description" required>
         </p>
         <p>
             <label>Tag to add:</label>
-            <input type="text" name="tags" 
+            <input type="text" id="organization-tags" name="tags" 
                 [(ngModel)]="tagString" required>
         </p>
         <p>
-            <button (click)="createOrganization()">Submit</button>
+            <button id="create-organization-btn" (click)="createOrganization()">Submit</button>
         </p>
     </form>
 </section>

@@ -20,21 +20,21 @@
                 <!-- Navbar content -->
                 <div class="row-fluid">
                 <form class="form-inline" >
-                        <button (click)="logout()" class="nav-item btn btn-warning btn-outline-success my-2 my-sm-0 nav-btn">Logout</button>
-                        <button (click)="routeToCreateEvent()" class="nav-item btn btn-warning btn-outline-success my-2 my-sm-0 nav-btn">Create Event</button>
-                        <button (click)="home()" class="nav-item btn btn-warning btn-outline-success my-2 my-sm-0 nav-btn">Home</button>
-                        <button (click)="routeToCreateOrganization()" class="nav-item btn btn-warning btn-outline-success my-2 my-sm-0 nav-btn">Create Organization</button>
+                        <button id="logout-btn" (click)="logout()" class="nav-item btn btn-warning btn-outline-success my-2 my-sm-0 nav-btn">Logout</button>
+                        <button id="create-event-btn" (click)="routeToCreateEvent()" class="nav-item btn btn-warning btn-outline-success my-2 my-sm-0 nav-btn">Create Event</button>
+                        <button id="home-btn" (click)="home()" class="nav-item btn btn-warning btn-outline-success my-2 my-sm-0 nav-btn">Home</button>
+                        <button id="create-organization-btn" (click)="routeToCreateOrganization()" class="nav-item btn btn-warning btn-outline-success my-2 my-sm-0 nav-btn">Create Organization</button>
                        
                 </form>
                 </div>
                 <div><!--shift this div to the right side of the nav bar-->
                     <form  class="form-inline">
-                    <select ref-type class="form-control" >
-                            <option value="Organization">Organization</option>
-                            <option value="Event">Event</option>
+                    <select id="search-type-opts" ref-type class="form-control" >
+                            <option id="search-opt-organization" value="Organization">Organization</option>
+                            <option id="search-type-opt-event" value="Event">Event</option>
                     </select>
-                    <input ref-input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                    <button (click)="searchQuery(type.value, input.value)" class="btn btn-warning btn-outline-success my-2 my-sm-0 nav-btn" type="button">Search</button>
+                    <input id="search-bar" ref-input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                    <button id="search-btn" (click)="searchQuery(type.value, input.value)" class="btn btn-warning btn-outline-success my-2 my-sm-0 nav-btn" type="button">Search</button>
                 </form>
                 </div>
         </nav>

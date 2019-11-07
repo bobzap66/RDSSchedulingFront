@@ -4,41 +4,41 @@
     <form #f="ngForm" >
         <p>
             <label>Event Name:</label>
-            <input type="text" name="name" 
+            <input type="text" id="create-event-name" name="name" 
                 [(ngModel)]="event.name" required maxlength="195">
         </p>
         <p>
             <label>Description:</label>
-            <input type="text" name="description" 
+            <input type="text" id="create-event-description" name="description" 
                 [(ngModel)]="event.description" required maxlength = "495">
         </p>
         <p>
             <label>Max attendees:</label>
-            <input type="number" name="maxattendees" 
+            <input type="number" id="create-event-maxattendees" name="maxattendees" 
                 [(ngModel)]="event.maxattendees" required max=500>
         </p>
         <p>
             <label>Location:</label>
-            <input type="text" name="location" 
+            <input type="text" id="create-event-location" name="location" 
                 [(ngModel)]="event.location" required maxlength = "195">
         </p>
         <p>
             <label>Start:</label>
-            <input type="datetime-local"  name = "starttime"
+            <input type="datetime-local" id="create-event-starttime" name = "starttime"
                 [(ngModel)]="event.startdate" required id = "starttime">
         </p>
         <p>
             <label>End:</label>
-            <input type="datetime-local"  name = "endtime"
+            <input type="datetime-local" id="create-event-endtime" name = "endtime"
                 [(ngModel)]="event.enddate" required id = "endtime">
         </p>
         <p>
             <label>Tags:</label>
-            <input type="text" name="tags" 
+            <input type="text" id="create-event-tags" name="tags" 
                 [(ngModel)]="tagString" required maxlength = "195">
         </p>
         <p>
-            <button (click)="createEvent()">Submit</button>
+            <button id="create-event-btn" (click)="createEvent()">Submit</button>
         </p>
     </form>
 </section>

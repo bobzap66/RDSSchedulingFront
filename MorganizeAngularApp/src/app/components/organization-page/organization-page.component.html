@@ -24,6 +24,9 @@
     #join-organization-btn{
         margin: 5px 0px;
     }
+    #leave-organization-btn{
+        margin: 5px 0px;
+    }
     .organization-member-list{
         width: 200px;
     }
@@ -42,8 +45,8 @@
 <div class="organization-page" *ngIf="organization">
     <div class="organization-page-column-left flex-column">
         <div class="organization-page-header">
-            <h1 class="organization-title">{{organization.name}}</h1>
-            <h6>{{organization.description}}</h6>
+            <h1 id="organization-title" class="organization-title">{{organization.name}}</h1>
+            <h6 id="organization-description">{{organization.description}}</h6>
             <button id="edit-organization-btn" *ngIf="isAdmin()" (click)="editOrganization()">Edit</button>
         </div>
         <div class="organization-member-list-wrapper">
@@ -53,7 +56,7 @@
                     <button (click)="joinOrganization()" id="join-organization-btn">Join organization</button>
                 </div>
                 <div *ngIf="isMember()">
-                    <button (click)="leaveOrganization()" id="join-organization-btn">Leave organization</button>
+                    <button (click)="leaveOrganization()" id="leave-organization-btn">Leave organization</button>
                 </div>
             
             </div>
